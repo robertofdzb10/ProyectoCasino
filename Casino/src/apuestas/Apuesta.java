@@ -1,5 +1,8 @@
 package apuestas;
 
-public class Apuesta {
+/** Clase padre abstracta Apuesta
+ *	
+ */
+public abstract class Apuesta {
 
 }

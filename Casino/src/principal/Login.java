@@ -1,5 +1,5 @@
 package principal;
 
-public class Interfaz {
+public class Login {
 
 }
