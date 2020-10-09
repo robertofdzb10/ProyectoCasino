@@ -1,5 +1,8 @@
 package tragaperras;
 
+/**Clase padre del juego Tragaperras.
+ */
+
 public class Tragaperras {
 
 	protected int casillaX; //Ubicación de la casilla en el eje X .
