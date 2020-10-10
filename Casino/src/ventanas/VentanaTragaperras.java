@@ -65,18 +65,23 @@ public class VentanaTragaperras extends JFrame {
 	bStart.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(ranura0.getVelocidad());	
-			System.out.println(ranura1.getVelocidad());	
-			System.out.println(ranura2.getVelocidad());	
+			ranura0.Start( ranura0 );
+			ranura0.Start( ranura1 );
+			ranura0.Start( ranura2 );
+			System.out.println("Ranura0 " + ranura0.getVelocidad());	
+			System.out.println("Ranura1 " +ranura1.getVelocidad());	
+			System.out.println("Ranura2 " +ranura2.getVelocidad());	
+			System.out.println("\n");
 		}
 	});
 	
 	bStop.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(ranura0.getVelocidad());	
-			System.out.println(ranura1.getVelocidad());	
-			System.out.println(ranura2.getVelocidad());	
+			System.out.println("Ranura0 " + ranura0.getVelocidad());	
+			System.out.println("Ranura1 " +ranura1.getVelocidad());	
+			System.out.println("Ranura2 " +ranura2.getVelocidad());	
+			System.out.println("\n");  
 		}
 	});
 		

@@ -1,6 +1,5 @@
 package tragaperras;
 
-
 /**Calse ranura, las 3 ranuras de la máquina son objetos de la misma. De maenera que cada una puede tener diferentes aceleraciones y velocidades.
  */
 
@@ -89,9 +88,20 @@ public class Ranura {
 	/**Inicia el movimiento de la ranura.
 	 */
 	public void Movimiento( Ranura ranura ) {
-		while ( ranura.getVelocidad() < ranura.velocidadMax) {
-			 ranura.setVelocidad( ranura.getVelocidad() + ranura.aceleracion);
-		}
+		Thread Hilo = new Thread() {
+			public void run() {
+				while ( ranura.getVelocidad() < ranura.velocidadMax) {
+					ranura.setVelocidad( ranura.getVelocidad() + ranura.aceleracion);
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Error");;
+					}
+				}
+			}
+		};
+		Hilo.start();
 	}
+
 
 }
