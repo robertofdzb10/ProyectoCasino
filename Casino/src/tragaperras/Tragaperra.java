@@ -1,6 +1,6 @@
 package tragaperras;
 
-/**Posible clase aolternativa a tragaperras.
+/**Posible clase alternativa a tragaperras.
  *
  */
 public class Tragaperra {

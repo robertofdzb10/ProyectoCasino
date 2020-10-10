@@ -1,5 +1,6 @@
 package tragaperras;
 
+
 /**Calse ranura, las 3 ranuras de la máquina son objetos de la misma. De maenera que cada una puede tener diferentes aceleraciones y velocidades.
  */
 
@@ -72,8 +73,10 @@ public class Ranura {
 	
 	/**Detiene el movimiento de una ranura.
 	 */
-	public void Stop() {
-		//TODO
+	public void Stop( Ranura ranura) {
+		if (ranura.getVelocidad() == ranura.getVelocidadMax()) {
+			ranura.setVelocidad(velocidad-(2*ranura.getAceleracion()));
+		}
 	}
 	
 	/**Encuentra la posición final de la ranura cuando se detiene.
@@ -81,15 +84,14 @@ public class Ranura {
 	public void PosicionFina() {
 		//TODO
 	}
+
 	
 	/**Inicia el movimiento de la ranura.
 	 */
 	public void Movimiento( Ranura ranura ) {
-		if( ranura.velocidad < ranura.velocidadMax) {
-			 ranura.setVelocidad( ranura.velocidad + ranura.aceleracion);
+		while ( ranura.getVelocidad() < ranura.velocidadMax) {
+			 ranura.setVelocidad( ranura.getVelocidad() + ranura.aceleracion);
 		}
 	}
-
-
 
 }
