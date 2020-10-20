@@ -6,4 +6,13 @@ public class Pelota implements Movible{
 	public void mover(){
 		
 	}
+
+	public Posicion getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+	
 }
