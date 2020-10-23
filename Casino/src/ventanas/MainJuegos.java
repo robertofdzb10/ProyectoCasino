@@ -11,8 +11,7 @@ public class MainJuegos {
 		
 		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
 		ventanaTragaperras.setVisible(true);
-		MenuLogin m = new MenuLogin();
+		MenuInicio m = new MenuInicio();
 		m.setVisible(true);
-		m.portada();
 	}
 }

@@ -5,68 +5,54 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import ventanas.VentanaGrafica;
-
-
 
 /**
- * Menu que aparece antes de la principal para que el usuario entre con su username
+ * Menu para iniciar sesión 
  */
 public class MenuLogin extends JFrame{
+
 	
-	private String nick;
-	public MenuLogin() {
-		portada();
-	}
 
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-public void portada() {
-		
-		this.setSize(700, 700);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("EL GRAN CASINO ");
-		setLocationRelativeTo(null);
+	public void iniciarSesion() {
 		
 		
+		MenuLogin m2 = new MenuLogin();
+		m2.setSize(700, 700);
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel);
+		m2.getContentPane().add(panel);
 		panel.setLayout(null);
-	//	panel.setBackground(Color.BLACK);
-		
-		
+		panel.setBackground(Color.BLACK);
 		JLabel etiqueta = new JLabel("EL GRAN CASINO");	
-		etiqueta.setSize(450, 60);
-		etiqueta.setLocation(140,0 );
+		etiqueta.setSize(450, 40);
+		etiqueta.setLocation(125,10 );
 		etiqueta.setForeground(Color.RED);
 		etiqueta.setFont(new Font("arial",Font.BOLD, 45));
 		panel.add(etiqueta);
 		
-		ImageIcon imagen1 = new ImageIcon("2.png");
-		JLabel etiqueta2 = new JLabel(imagen1);
-		etiqueta2.setSize(450, 600);
-		etiqueta2.setLocation(0, 55);
+		JLabel etiqueta2= new JLabel("INICIAR SESIÓN");	
+		etiqueta2.setSize(510, 80);
+		etiqueta2.setLocation(255,90 );
+		etiqueta2.setForeground(Color.BLUE);
+		etiqueta2.setFont(new Font("arial",Font.BOLD, 32));
 		panel.add(etiqueta2);
+	
 		
-		ImageIcon imagen2 = new ImageIcon("1.png");
-		JLabel etiqueta3 = new JLabel(imagen2);
-		etiqueta3.setSize(300, 250);
-		etiqueta3.setLocation(405,305);
-		panel.add(etiqueta3);
-		
-
-		
-		
-		
-		
-		final JButton boton1 = new JButton("Iniciar sesión");
-		boton1.setSize(120, 30);
-		boton1.setLocation(455, 180);
+		final JButton boton1 = new JButton("COMPLETAR LOGIN");
+		boton1.setSize(190, 30);
+		boton1.setLocation(455, 425);
+		boton1.setBackground(Color.GRAY);
 		ActionListener escuchador = new ActionListener() {
 			
 			
@@ -76,7 +62,6 @@ public void portada() {
 						public void run() {
 							
 							
-						
 							
 						}
 						
@@ -92,53 +77,16 @@ public void portada() {
 		boton1.addActionListener(escuchador);
 		panel.add(boton1);
 		
-		final JButton boton2 = new JButton("Registrarse");
-		boton2.setSize(120, 30);
-		boton2.setLocation(455, 220);
-		ActionListener escuchador2 = new ActionListener() {
-			
-			
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					 
-					 
-					 
-					
-					
-				
-					
-					 
-					
-					
-					
-					Thread Hilo = new Thread() {
-						public void run() {
-						
-						}
-						
-					};
-					Hilo.start();
-				
-				
-			}
-
+		JTextField caja = new JTextField();
+		caja.setBounds(455, 265, 75, 30);
+		caja.setText("Nick");
+		panel.add(caja);
 		
-
-				
-		};
-		boton2.addActionListener(escuchador2);
-		panel.add(boton2);
+		JTextField caja2 = new JTextField();
+		caja2.setBounds(455, 345, 75, 30);
+		caja2.setText("Password");
+		panel.add(caja2);
 		
-		
-		
-	
-		
-		
-		
-		
-		
-		
-	
+		m2.setVisible(true);
 	}
 }
