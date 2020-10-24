@@ -68,7 +68,8 @@ public class MenuLogin extends JFrame{
 					Thread Hilo = new Thread() {
 						public void run() {
 							
-							
+							MenuJuegos m = new MenuJuegos();
+							m.juegos();
 							
 						}
 						

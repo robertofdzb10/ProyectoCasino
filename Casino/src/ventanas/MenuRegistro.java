@@ -41,7 +41,7 @@ public class MenuRegistro extends JFrame{
 	public void registarse() {
 		
 		
-		MenuLogin m2 = new MenuLogin();
+		MenuRegistro m2 = new MenuRegistro();
 		m2.setSize(700, 700);
 		JPanel panel = new JPanel();
 		m2.getContentPane().add(panel);
@@ -90,7 +90,8 @@ public class MenuRegistro extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					Thread Hilo = new Thread() {
 						public void run() {
-							 nick = caja.getText();
+							MenuJuegos m = new MenuJuegos();
+							m.juegos();
 							
 							
 						}
