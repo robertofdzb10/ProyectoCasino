@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,22 +60,28 @@ public class MenuRegistro extends JFrame{
 		etiqueta2.setForeground(Color.BLUE);
 		etiqueta2.setFont(new Font("arial",Font.BOLD, 32));
 		panel.add(etiqueta2);
+		
+		ImageIcon imagen1 = new ImageIcon("2.jpg");
+		JLabel etiqueta3 = new JLabel(imagen1);
+		etiqueta3.setSize(500, 600);
+		etiqueta3.setLocation(0,100);
+		panel.add(etiqueta3);
 	
 		
 		JTextField caja = new JTextField();
-		caja.setBounds(455, 265, 75, 30);
+		caja.setBounds(525, 265, 75, 30);
 		caja.setText("Nick");
 		panel.add(caja);
 		
 		JTextField caja2 = new JTextField();
-		caja2.setBounds(455, 345, 75, 30);
+		caja2.setBounds(525, 345, 75, 30);
 		caja2.setText("Password");
 		panel.add(caja2);
 		
 		
 		final JButton boton1 = new JButton("COMPLETAR REGISTRO");
-		boton1.setSize(190, 30);
-		boton1.setLocation(455, 425);
+		boton1.setSize(175, 30);
+		boton1.setLocation(505, 425);
 		boton1.setBackground(Color.GRAY);
 		ActionListener escuchador = new ActionListener() {
 			
