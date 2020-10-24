@@ -10,6 +10,17 @@ public class Ruleta {
 	ArrayList<Casilla> casillas;
 	Pelota pelota;
 	
+	/** Metodo para añadir casillas al arraylist de las casillas, siendo NUM_MAX_CASILLAS el limite
+	 * @param casilla para añadir al arraylist
+	 * @return false si el ArrayList está lleno
+	 */
+	public boolean addCasilla(Casilla casilla) {
+		if(casillas.size() < NUM_MAX_CASILLAS) 
+			return casillas.add(casilla);
+		else
+			return false;
+	}
+	
 	public ArrayList<Casilla> getCasillas() {
 		return casillas;
 	}
