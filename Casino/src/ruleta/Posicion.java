@@ -3,6 +3,10 @@ package ruleta;
 public class Posicion {
 	float x,y;
 	
+	public Posicion(float x, float y) {
+		this.x = x;
+		this.y = y;
+	}
 	public float getX() {
 		return x;
 	}
