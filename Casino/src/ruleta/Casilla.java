@@ -15,13 +15,16 @@ public class Casilla implements Iluminable{
 	 * @return null si el numero no puede ser rojo
 	 */
 	public Casilla addCasillaRoja(int _numero) {
+		// Rangos de casillas rojas
 		int minParRojo = 12;
 		int maxParRojo = 36;
 		int minImparRojo = 1;
 		int maxImparRojo = 8;
+		
 		// Si es par y se encuentra entre los pares que deben ser rojos
 		if (_numero % 2 == 0 && _numero >= minParRojo && _numero <= maxParRojo) 
 			return new Casilla(_numero, Color.RED, this.posicion);
+		
 		// Si es impar y se encuentra entre los impares que deben ser rojos
 		if( _numero % 2 != 0 && _numero>=minImparRojo && _numero<=maxImparRojo)
 			return new Casilla(_numero, Color.RED, this.posicion);
@@ -33,19 +36,25 @@ public class Casilla implements Iluminable{
 	 * @return null si el numero no puede ser negro
 	 */
 	public Casilla addCasillaNegra(int _numero) {
+		// Rangos de casillas negras
 		int minParNegro = 2;
 		int maxParNegro = 10;
 		int minImparNegro = 11;
 		int maxImparNegro = 35;
+		
 		// Negros pares
 		if (_numero % 2 == 0 && _numero >= minParNegro && _numero <= maxParNegro) 
 			return new Casilla(_numero, Color.BLACK, this.posicion);
+		
 		// Negros impares
 		if( _numero % 2 != 0 && _numero >= minImparNegro && _numero<=maxImparNegro)
 			return new Casilla(_numero, Color.BLACK, this.posicion);
 		else
 			return null;
 	}
+	// Constructor vacío
+	public Casilla() {}
+	/** Constructor Casilla con todos sus atributos	 */
 	public Casilla(int numero, Color color, Posicion posicion) {
 		this.numero = numero;
 		this.color = color;
