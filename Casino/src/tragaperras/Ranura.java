@@ -1,5 +1,7 @@
 package tragaperras;
 
+import java.util.ArrayList;
+
 /**Calse ranura, las 3 ranuras de la máquina son objetos de la misma. De maenera que cada una puede tener diferentes aceleraciones y velocidades.
  */
 
@@ -10,6 +12,14 @@ public class Ranura {
 	private int velocidadMax; //Velocidad Máxima que puede alcanzar la casilla.
 	private String numRanura; //Indica el número de casilla creada (0, 1, 2).
 
+	//Iconos que forman la ranura 
+	
+	public Icono naranja; //Icono de la naranaja.
+	public Icono comodin; //Icono del comodín.
+	public Icono bar; //Icono del BAR.
+	public Icono pera; //Icono de la pera.
+	public Icono platano; //Icono del platano.
+	public Icono cereza; //Icono de la cereza.
 	
 	/**Crea una nueva ranura (NúmeroRanura , VelocidadMaxima, Aceleración)
 	 */
@@ -74,11 +84,15 @@ public class Ranura {
 	/**Detiene el movimiento de una ranura.
 	 */
 	public void Stop( Ranura ranura) {
-		if (ranura.getVelocidad() == ranura.getVelocidadMax()) {
+		if (ranura.getVelocidad() >= ranura.getVelocidadMax()) {
 			Thread Hilo = new Thread() {
 				public void run() {
 					while ( ranura.getVelocidad() > 0) {
-						ranura.setVelocidad(velocidad-(2*ranura.getAceleracion()));
+						if ((velocidad-(2*ranura.getAceleracion())) < 0){
+							ranura.setVelocidad(0);
+						} else { 
+							ranura.setVelocidad(velocidad-(2*ranura.getAceleracion()));
+						}
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
@@ -91,18 +105,41 @@ public class Ranura {
 		}
 	}
 	
-	/**Encuentra la posición final de la ranura cuando se detiene.
+	/**Encuentra la psoción final de la ranura cuando se detiene.
 	 */
-	public void PosicionFina() {
-//		Icono naranaja = new Icono("Naranja", 20/100);
-//		Icono comodin = new Icono("Comodín", 15/100);
-//		Icono bar = new Icono("Bar", 5/100);
-//		Icono pera = new Icono("Pera", 20/100);
-//		Icono platano = new Icono("Platano", 20/100);
-//		Icono cereza = new Icono("Cereza", 20/100);
-//		
+	public void PosicionFinal() {
+		Icono iconoFinal = devuelveIconoAleatorio();
 	}
 
+	/**Devuelve un Icono al azar, dependeindo de las probabilidades.
+	 */
+	public Icono devuelveIconoAleatorio(){
+	    ArrayList<Icono> arrayIconos = new ArrayList<Icono>();
+		naranja = new Icono("Naranja", 20); //Probabilidad de 0 a 20.
+	    arrayIconos.add(naranja);
+		comodin = new Icono("Comodín", 35); //Probabilidad de 20 en adelante a 35.
+	    arrayIconos.add(comodin);
+		bar = new Icono("Bar", 40); //Probabilidad de 35 en adelante a 40.
+	    arrayIconos.add(bar);
+		pera = new Icono("Pera", 60); //Probabilidad de 40 en adelante a 60.
+	    arrayIconos.add(pera);
+		platano = new Icono("Platano", 80); //Probabilidad de 60 en adelante a 80.
+	    arrayIconos.add(platano);
+		cereza = new Icono("Cereza", 100); //Probabilidad de 80 en adelante a 100.
+	    arrayIconos.add(cereza);
+	    int numAleatorio = (int)(Math.random() * 100);
+	    int i = 0;
+	    Icono returnIcono = null;
+	    while( i < arrayIconos.size() ) { //Mientras que 
+	    	if (numAleatorio <= (arrayIconos.get(i).getProbabilidad())) {
+	    		returnIcono = arrayIconos.get(i);
+	    		break;
+	    	}
+	    	i++;
+	    }
+	    return returnIcono;
+
+	}
 	
 	/**Inicia el movimiento de la ranura.
 	 */

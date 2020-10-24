@@ -20,6 +20,8 @@ public class VentanaTragaperras extends JFrame {
 	private Ranura ranura0;
 	private Ranura ranura1;
 	private Ranura ranura2;
+	private boolean booleanHilo0;
+	private boolean booleanHilo1;
 	
 	public VentanaTragaperras() {
 		
@@ -57,7 +59,9 @@ public class VentanaTragaperras extends JFrame {
 	getContentPane().add( botonera, BorderLayout.SOUTH);
 	botonera.add(bStart);
 	botonera.add(bStop);
-	
+	bStop.setEnabled(false); //El botón de Stop permanece desactivado hasta que se alcanze la Velocidad MAxima de la ranura.
+
+
 	
 	//5.Eventos
 	
@@ -67,12 +71,32 @@ public class VentanaTragaperras extends JFrame {
 			ranura0.Start( ranura0 );
 			ranura0.Start( ranura1 );
 			ranura0.Start( ranura2 );
-			System.out.println("Ranura0 " + ranura0.getVelocidad());	
-			System.out.println("Ranura1 " +ranura1.getVelocidad());	
-			System.out.println("Ranura2 " +ranura2.getVelocidad());	
-			System.out.println("\n");
+			bStart.setEnabled(false);
+			Thread Hilo0 = new Thread() {
+				public void run() {
+					booleanHilo0 = false;
+					while (booleanHilo0 == false) {
+						System.out.println("Ranura0 " + ranura0.getVelocidad());	
+						System.out.println("Ranura1 " +ranura1.getVelocidad());	
+						System.out.println("Ranura2 " +ranura2.getVelocidad());	
+						System.out.println("\n");
+					if (ranura0.getVelocidad() >= ranura0.getVelocidadMax() && ranura1.getVelocidad() >= ranura1.getVelocidadMax() && ranura2.getVelocidad() >= ranura2.getVelocidadMax()) {
+						bStop.setEnabled(true);
+						booleanHilo0 = true;
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Error");;
+					}
+				}
+				}
+			};
+			Hilo0.start();
 		}
 	});
+
+
 	
 	bStop.addActionListener( new ActionListener() {
 		@Override
@@ -80,11 +104,28 @@ public class VentanaTragaperras extends JFrame {
 			ranura0.Stop( ranura0 );
 			ranura1.Stop( ranura1 );
 			ranura2.Stop( ranura2 );
-			
-			System.out.println("Ranura0 " + ranura0.getVelocidad());	
-			System.out.println("Ranura1 " +ranura1.getVelocidad());	
-			System.out.println("Ranura2 " +ranura2.getVelocidad());	
-			System.out.println("\n");  
+			bStop.setEnabled(false);
+			Thread Hilo1 = new Thread() {
+				public void run() {
+					booleanHilo1 = false;
+					while (booleanHilo1 == false) {
+						System.out.println("Ranura0 " + ranura0.getVelocidad());	
+						System.out.println("Ranura1 " +ranura1.getVelocidad());	
+						System.out.println("Ranura2 " +ranura2.getVelocidad());	
+						System.out.println("\n");
+						if (bStart.isEnabled() == false && ranura0.getVelocidad() == 0 && ranura1.getVelocidad() == 0 && ranura2.getVelocidad() == 0) {
+							bStart.setEnabled(true);
+							booleanHilo1 = true;
+						}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Error");;
+					}
+				}
+				}
+			};
+			Hilo1.start();
 		}
 	});
 		
