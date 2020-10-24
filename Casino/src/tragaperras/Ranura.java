@@ -59,6 +59,7 @@ public class Ranura {
 	}
 
 	/**Devuelve el número de la ranura.
+	 * sTRING P
 	 */
 	public String getNumRanura() {
 		return numRanura;
@@ -74,14 +75,32 @@ public class Ranura {
 	 */
 	public void Stop( Ranura ranura) {
 		if (ranura.getVelocidad() == ranura.getVelocidadMax()) {
-			ranura.setVelocidad(velocidad-(2*ranura.getAceleracion()));
+			Thread Hilo = new Thread() {
+				public void run() {
+					while ( ranura.getVelocidad() > 0) {
+						ranura.setVelocidad(velocidad-(2*ranura.getAceleracion()));
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							System.out.println("Error");;
+						}
+					}
+				}
+			};
+			Hilo.start();
 		}
 	}
 	
 	/**Encuentra la posición final de la ranura cuando se detiene.
 	 */
 	public void PosicionFina() {
-		//TODO
+		Figura naranaja = new Figura("Naranja", 20/100);
+		Figura comodin = new Figura("Comodín", 15/100);
+		Figura bar = new Figura("Bar", 5/100);
+		Figura pera = new Figura("Pera", 20/100);
+		Figura platano = new Figura("Platano", 20/100);
+		Figura cereza = new Figura("Cereza", 20/100);
+		
 	}
 
 	

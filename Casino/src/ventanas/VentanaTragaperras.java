@@ -28,8 +28,7 @@ public class VentanaTragaperras extends JFrame {
 	ranura1 = new Ranura("ranura1", 45, 2);
 	ranura2 = new Ranura("ranura2", 70, 3);
 	
-	//0.Configurar el coche
-	
+
 	//1. Configuracion de la ventana
 	
 	setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -78,6 +77,10 @@ public class VentanaTragaperras extends JFrame {
 	bStop.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			ranura0.Stop( ranura0 );
+			ranura1.Stop( ranura1 );
+			ranura2.Stop( ranura2 );
+			
 			System.out.println("Ranura0 " + ranura0.getVelocidad());	
 			System.out.println("Ranura1 " +ranura1.getVelocidad());	
 			System.out.println("Ranura2 " +ranura2.getVelocidad());	
