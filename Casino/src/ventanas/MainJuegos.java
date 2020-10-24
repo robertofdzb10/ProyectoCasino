@@ -9,8 +9,8 @@ public class MainJuegos {
 	
 	public static void main(String[] args) {
 		
-		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
-		ventanaTragaperras.setVisible(true);
+//		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
+//		ventanaTragaperras.setVisible(true);
 		MenuInicio m = new MenuInicio();
 		m.setVisible(true);
 	}

@@ -94,13 +94,13 @@ public class Ranura {
 	/**Encuentra la posición final de la ranura cuando se detiene.
 	 */
 	public void PosicionFina() {
-		Icono naranaja = new Icono("Naranja", 20/100);
-		Icono comodin = new Icono("Comodín", 15/100);
-		Icono bar = new Icono("Bar", 5/100);
-		Icono pera = new Icono("Pera", 20/100);
-		Icono platano = new Icono("Platano", 20/100);
-		Icono cereza = new Icono("Cereza", 20/100);
-		
+//		Icono naranaja = new Icono("Naranja", 20/100);
+//		Icono comodin = new Icono("Comodín", 15/100);
+//		Icono bar = new Icono("Bar", 5/100);
+//		Icono pera = new Icono("Pera", 20/100);
+//		Icono platano = new Icono("Platano", 20/100);
+//		Icono cereza = new Icono("Cereza", 20/100);
+//		
 	}
 
 	
