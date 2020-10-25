@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tragaperras.Ranura;
@@ -22,6 +23,7 @@ public class VentanaTragaperras extends JFrame {
 	private Ranura ranura2;
 	private boolean booleanHilo0;
 	private boolean booleanHilo1;
+	private boolean booleanHilo2;
 	
 	public VentanaTragaperras() {
 		
@@ -104,6 +106,35 @@ public class VentanaTragaperras extends JFrame {
 			ranura0.Stop( ranura0 );
 			ranura1.Stop( ranura1 );
 			ranura2.Stop( ranura2 );
+			Thread Hilo2 = new Thread() {
+				public void run() {
+					booleanHilo2 = false;
+					while (booleanHilo2 == false) {
+						if (ranura0.getVelocidad() <= 8 && ranura1.getVelocidad() <= 8 && ranura2.getVelocidad() <= 8) {
+							String icono1 = ranura0.devuelveIconoAleatorio().getNombre();
+							String icono2 =ranura1.devuelveIconoAleatorio().getNombre();
+							String icono3 =ranura2.devuelveIconoAleatorio().getNombre();
+							System.out.println( icono1 + "  " + icono2 + "  " + icono3);
+							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
+								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
+									JOptionPane.showMessageDialog(panel, "¡Ganador!");
+								} else {
+									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
+								}
+							}else {
+								
+							}
+							booleanHilo2 = true;
+						}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Error");;
+					}
+				}
+				}
+			};
+			Hilo2.start();
 			bStop.setEnabled(false);
 			Thread Hilo1 = new Thread() {
 				public void run() {

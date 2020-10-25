@@ -51,7 +51,7 @@ public class Icono {
 
 	@Override
 	public boolean equals(Object obj) { //Mismo nombre
-		// TODO Auto-generated method stub
+		//TODO
 		return super.equals(obj);
 	}
 
