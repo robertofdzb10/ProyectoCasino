@@ -44,10 +44,8 @@ public class Ruleta {
 	 * @return false si el ArrayList está lleno
 	 */
 	public boolean addCasilla(Casilla casilla) {
-		if(casillas.size() < NUM_MAX_CASILLAS) 
-			return casillas.add(casilla);
-		else
-			return false;
+		if(casillas.size() < NUM_MAX_CASILLAS) return casillas.add(casilla);
+		return false;
 	}
 	
 	public ArrayList<Casilla> getCasillas() {
