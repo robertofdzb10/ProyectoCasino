@@ -2,16 +2,14 @@ package ruleta;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import ventanas.VentanaRuleta;
 
 public class Ruleta {
-//	private static final int NUM_ROJOS = 18;  // Casillas negras
-//	private static final int NUM_NEGROS = 18; // Casillas rojas
-//	private static final int NUM_VERDES = 1;  // Casillas verdes
+	// Elementos estaticos
 	private static final int NUM_MAX_CASILLAS = 37; // Casillas totales
-	private static final int RADIO_RULETA = 400;
+	private static final int RADIO_RULETA = 300;
 	private static ArrayList<Casilla> casillas;
 	private static Pelota pelota;
-	
 	
 	/** Metodo inicializador de ruleta
 	 * 
@@ -31,8 +29,9 @@ public class Ruleta {
 	 */
 	public void colocarCasillas() {
 		float x,y;
-		double distanciaCasillas = (2*Math.PI*RADIO_RULETA)/NUM_MAX_CASILLAS;
-		double anguloCasillas = 360/distanciaCasillas;
+//		double distanciaCasillas = (2*Math.PI*RADIO_RULETA)/NUM_MAX_CASILLAS;
+		double anguloCasillas = 360/NUM_MAX_CASILLAS;
+		double angulo = 0;
 		for(Casilla c: casillas) {
 			x = (float)(Math.cos(anguloCasillas)) + RADIO_RULETA;
 			y = (float)(Math.sin(anguloCasillas)) + RADIO_RULETA;
