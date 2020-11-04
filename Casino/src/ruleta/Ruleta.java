@@ -8,7 +8,7 @@ public class Ruleta {
 	static final int NUM_MAX_CASILLAS = 37; // Casillas totales
 	static final int RADIO_RULETA = 300;
 	static ArrayList<Casilla> casillas;
-	public static Pelota pelota;
+	public static Pelota pelota = new Pelota();
 	
 	/** Metodo inicializador de ruleta
 	 * 
