@@ -1,13 +1,13 @@
 package ruleta;
 
 public class Posicion {
-	float x,y;
+	double x,y;
 	
-	public Posicion(float x, float y) {
+	public Posicion(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 
@@ -15,7 +15,7 @@ public class Posicion {
 		this.x = x;
 	}
 
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 
