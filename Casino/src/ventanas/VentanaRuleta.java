@@ -11,8 +11,8 @@ import ruleta.*;
  * Ventana para la ruleta
  */
 public class VentanaRuleta {
-	private static final int ANCHO_VENTANA_RULETA = 1000;
-	private static final int ALTO_VENTANA_RULETA = 700;
+	public static final int ANCHO_VENTANA_RULETA = 1000;
+	public static final int ALTO_VENTANA_RULETA = 700;
 	
 	// Main para hacer pruebas
 	public static void main(String[] args) {

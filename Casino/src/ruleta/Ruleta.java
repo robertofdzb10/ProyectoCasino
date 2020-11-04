@@ -24,18 +24,23 @@ public class Ruleta {
 			casillas.add(aux.addCasillaRoja(i));		
 		}
 	}
+	public static void main(String[] args) {
+		colocarCasillas();
+	}
 	/** Metodo para colocar las casillas 
 	 * -- ESTABLECER POSICION --
 	 */
-	public void colocarCasillas() {
-		float x,y;
-//		double distanciaCasillas = (2*Math.PI*RADIO_RULETA)/NUM_MAX_CASILLAS;
-		double anguloCasillas = 360/NUM_MAX_CASILLAS;
-		double angulo = 0;
+	public static void colocarCasillas() {
+		float x,y; // posicion a colocar
+		float xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2; // 1000/2
+		float yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;  // 700/2
+		double anguloCasillas = (2*Math.PI)/NUM_MAX_CASILLAS; 
+		double angulo = 0; // Angulo que va cambiando
 		for(Casilla c: casillas) {
-			x = (float)(Math.cos(anguloCasillas)) + RADIO_RULETA;
-			y = (float)(Math.sin(anguloCasillas)) + RADIO_RULETA;
-			c.setPosicion(new Posicion(x,y));
+			x = (float)(Math.cos(angulo))*RADIO_RULETA + xOrigen;
+			y = (float)(Math.sin(angulo))*RADIO_RULETA + yOrigen;
+			angulo += anguloCasillas;
+			c.setPosicion(new Posicion(x,y)); 
 		}
 	}
 	/** Metodo para añadir casillas al arraylist de las casillas, siendo NUM_MAX_CASILLAS el limite
