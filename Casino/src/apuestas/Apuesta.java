@@ -5,4 +5,5 @@ package apuestas;
  */
 public abstract class Apuesta {
 
+	
 }
