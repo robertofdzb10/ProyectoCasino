@@ -10,26 +10,24 @@ import ruleta.*;
 /**
  * Ventana para la ruleta
  */
-public class VentanaRuleta {
+public class VentanaRuleta extends JFrame{
 	public static final int ANCHO_VENTANA_RULETA = 1000;
 	public static final int ALTO_VENTANA_RULETA = 700;
 	
-	// Main para hacer pruebas
-	public static void main(String[] args) {
-		VentanaRuleta v = new VentanaRuleta();;
-	}
+	private JFrame ventanaRuleta;
+	private Pelota pelota;
 	
-	private static JFrame vRuleta;
 	public VentanaRuleta(){
-		vRuleta = new JFrame();
-		vRuleta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		vRuleta.setSize(ANCHO_VENTANA_RULETA, ALTO_VENTANA_RULETA); // Tamaño de la ventana
-		vRuleta.setTitle("RULETA"); // Titulo de la ventana
-		vRuleta.setLocationRelativeTo(null); // En el centro de la pantalla
-		vRuleta.setVisible(true); // Ventana visible = true
+		
+		pelota = new Pelota();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(ANCHO_VENTANA_RULETA, ALTO_VENTANA_RULETA); // Tamaño de la ventana
+		setTitle("RULETA"); // Titulo de la ventana
+		setLocationRelativeTo(null); // En el centro de la pantalla
 		
 		JPanel panel = new JPanel();
-		vRuleta.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setBackground(Color.GREEN);
 		

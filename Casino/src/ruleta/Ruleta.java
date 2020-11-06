@@ -8,7 +8,6 @@ public class Ruleta {
 	static final int NUM_MAX_CASILLAS = 37; // Casillas totales
 	static final int RADIO_RULETA = 300;
 	static ArrayList<Casilla> casillas;
-	public static Pelota pelota = new Pelota();
 	
 	/** Metodo inicializador de ruleta
 	 * 
@@ -24,7 +23,7 @@ public class Ruleta {
 		}
 		aux.colocarCasillas();
 	}
-
+	
 	/** Metodo para añadir casillas al arraylist de las casillas, siendo NUM_MAX_CASILLAS el limite
 	 * @param casilla para añadir al arraylist
 	 * @return false si el ArrayList está lleno
@@ -33,17 +32,10 @@ public class Ruleta {
 		if(casillas.size() < NUM_MAX_CASILLAS) return casillas.add(casilla);
 		return false;
 	}
-	
 	public ArrayList<Casilla> getCasillas() {
 		return casillas;
 	}
 	public void setCasillas(ArrayList<Casilla> casillas) {
 		this.casillas = casillas;
-	}
-	public Pelota getPelota() {
-		return pelota;
-	}
-	public void setPelota(Pelota pelota) {
-		this.pelota = pelota;
 	}
 }
