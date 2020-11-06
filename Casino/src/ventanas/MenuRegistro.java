@@ -30,15 +30,15 @@ public class MenuRegistro extends JFrame{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
-	public static HashMap<String, String> mapa = new HashMap<String, String>();
-	public String nick;
-
 	
 
 	
+
 	
-	public void registarse() {
+	
+	public void registarse(HashMap<String, String> mapa) {
 		
 		
 		MenuRegistro m2 = new MenuRegistro();
@@ -90,8 +90,10 @@ public class MenuRegistro extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					Thread Hilo = new Thread() {
 						public void run() {
+							GuardarNick(caja.getText(),caja2.getText(),mapa);
 							MenuJuegos m = new MenuJuegos();
 							m.juegos();
+							
 							
 							
 						}
@@ -111,40 +113,9 @@ public class MenuRegistro extends JFrame{
 		m2.setVisible(true);
 	}
 	
-	public void Ficheros(){
-		BufferedReader br;
-		try {
-			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
-			if (fichero.exists()) {
-				br = new BufferedReader(new FileReader("C:\\Users\\jogru\\git\\Casino\\Casino\\mapa.txt"));
-				String linea = br.readLine();
-				
-				String linea2 = br.readLine();
-				
-				while(linea != null & linea2 != null) {
-					
-					mapa.put(linea,linea2);
-					
-					linea = br.readLine();
-					linea2 = br.readLine();
-					
-					
-				}
-			}
-		}
-			 catch (FileNotFoundException e1) {
-				
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			
-			}
-	
-			
-	public static void GuardarNick(String punt,String nick, HashMap<String, String> mapa){
-		if (punt != null) {
-			mapa.put(nick,punt);
+	public static void GuardarNick(String nick,String contraseña, HashMap<String, String> mapa){
+		if (contraseña != null) {
+			mapa.put(nick,contraseña);
 			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
 			if (fichero.exists()) {
 				fichero.delete();

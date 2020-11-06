@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class MenuInicio extends JFrame{
 	/**
 	 * 
 	 */
+	public static HashMap<String, String> mapa = new HashMap<String, String>();
 	private static final long serialVersionUID = 1L;
 
 
@@ -71,7 +73,7 @@ public void portada() {
 					Thread Hilo = new Thread() {
 						public void run() {
 							MenuLogin m2 = new MenuLogin();
-							m2.iniciarSesion();
+							m2.iniciarSesion(mapa);
 							
 							
 						}
@@ -102,7 +104,7 @@ public void portada() {
 					 
 					 
 					MenuRegistro m3 = new MenuRegistro();
-					m3.registarse();
+					m3.registarse(mapa);
 					
 				
 					
