@@ -1,11 +1,16 @@
 package ruleta;
 
-import ventanas.VentanaRuleta;
+import ventanas.VentanaRuleta; // para utilizar las medidas de la ventana
 
 public class Pelota implements Movible{
-	Posicion posicion;
+	private int velocidad, aceleracion, velocidadMax;
+	private Posicion posicion;
 	
-	
+	public Pelota() {
+		this.velocidad = 0;
+		this.aceleracion = 3;
+		this.velocidadMax = 80;
+	}
 	/** Metodo para hacer que la pelota se mueva
 	 * alrededor de la ruleta hasta caer en una casilla
 	 */
@@ -25,6 +30,24 @@ public class Pelota implements Movible{
 	}
 	
 	
+	public int getVelocidad() {
+		return velocidad;
+	}
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	public int getAceleracion() {
+		return aceleracion;
+	}
+	public void setAceleracion(int aceleracion) {
+		this.aceleracion = aceleracion;
+	}
+	public int getVelocidadMax() {
+		return velocidadMax;
+	}
+	public void setVelocidadMax(int velocidadMax) {
+		this.velocidadMax = velocidadMax;
+	}
 	public Posicion getPosicion() {
 		return posicion;
 	}
