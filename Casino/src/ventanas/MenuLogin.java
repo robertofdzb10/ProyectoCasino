@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +32,7 @@ public class MenuLogin extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void iniciarSesion() {
+	public void iniciarSesion(HashMap<String, String> mapa) {
 		
 		
 		MenuLogin m2 = new MenuLogin();
@@ -54,6 +60,16 @@ public class MenuLogin extends JFrame{
 		etiqueta3.setSize(500, 600);
 		etiqueta3.setLocation(0,100);
 		panel.add(etiqueta3);
+		
+		JTextField caja = new JTextField();
+		caja.setBounds(530, 265, 75, 30);
+		caja.setText("Nick");
+		panel.add(caja);
+		
+		JTextField caja2 = new JTextField();
+		caja2.setBounds(530, 345, 75, 30);
+		caja2.setText("Password");
+		panel.add(caja2);
 	
 		
 		final JButton boton1 = new JButton("COMPLETAR LOGIN");
@@ -67,9 +83,13 @@ public class MenuLogin extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					Thread Hilo = new Thread() {
 						public void run() {
+							boolean existe = false;
+							existe = Ficheros(caja.getText(),caja2.getText(),mapa,existe);
+							if(existe == true) {
+								MenuJuegos m = new MenuJuegos();
+								m.juegos();
+							}
 							
-							MenuJuegos m = new MenuJuegos();
-							m.juegos();
 							
 						}
 						
@@ -85,16 +105,46 @@ public class MenuLogin extends JFrame{
 		boton1.addActionListener(escuchador);
 		panel.add(boton1);
 		
-		JTextField caja = new JTextField();
-		caja.setBounds(530, 265, 75, 30);
-		caja.setText("Nick");
-		panel.add(caja);
-		
-		JTextField caja2 = new JTextField();
-		caja2.setBounds(530, 345, 75, 30);
-		caja2.setText("Password");
-		panel.add(caja2);
+
 		
 		m2.setVisible(true);
 	}
+	
+	public boolean Ficheros(String nick, String contraseña,HashMap<String, String> mapa,boolean existe){
+		BufferedReader br;
+		try {
+			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
+			if (fichero.exists()) {
+				br = new BufferedReader(new FileReader("C:\\Users\\jogru\\git\\Casino\\Casino\\mapa.txt"));
+				String linea = br.readLine();
+				
+				String linea2 = br.readLine();
+				
+				while(linea != null & linea2 != null) {
+					mapa.put(linea,linea2);
+					linea = br.readLine();
+					linea2 = br.readLine();
+					
+					
+				}
+			}
+			if(mapa.get(nick).equals(contraseña)) {
+				existe = true;
+			}
+			else {
+				System.out.println("Introduzca un nick válido con su respectiva contraseña o registrese.");
+			}
+			
+		}
+			 catch (FileNotFoundException e1) {
+				
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		return existe;
+			
+			}
+	
+			
 }
