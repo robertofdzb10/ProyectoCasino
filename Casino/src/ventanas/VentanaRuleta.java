@@ -1,7 +1,7 @@
 package ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.*;
 
 import javax.swing.*;
 
@@ -26,10 +26,14 @@ public class VentanaRuleta extends JFrame{
 		setTitle("RULETA"); // Titulo de la ventana
 		setLocationRelativeTo(null); // En el centro de la pantalla
 		
+		// PANELES
 		JPanel panel = new JPanel();
-		getContentPane().add(panel);
+		JPanel pBotones = new JPanel();
+		getContentPane().add(panel, null);
 		panel.setLayout(null);
-		panel.setBackground(Color.GREEN);
+		getContentPane().add(pBotones, BorderLayout.SOUTH);
+		panel.setBackground(Color.darkGray);
+		pBotones.setBackground(Color.GREEN);
 		
 		// BOTONES
 		final JButton bCobrar,bRojo,bNegro,bIniciar;
@@ -41,8 +45,11 @@ public class VentanaRuleta extends JFrame{
 		bRojo.setSize(130, 30);
 		bNegro.setSize(130, 30);
 		bIniciar.setSize(260,60);
-		bCobrar.setLocation(30, 20);
-		panel.add(bCobrar);
+		
+		pBotones.add(bCobrar);
+		pBotones.add(bRojo);
+		pBotones.add(bNegro);
+		pBotones.add(bIniciar);
 		
 	}
 }
