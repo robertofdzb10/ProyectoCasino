@@ -9,12 +9,12 @@ public class MainJuegos {
 	public static void main(String[] args) {
 		
 		VentanaRuleta ventanaRuleta = new VentanaRuleta();
-		ventanaRuleta.setVisible(false);
+		ventanaRuleta.setVisible(true);
 		
 		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
 		ventanaTragaperras.setVisible(false);
 		MenuInicio m = new MenuInicio();
-		m.setVisible(true);
+		m.setVisible(false);
 		
 	}
 }

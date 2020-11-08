@@ -2,8 +2,10 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import ruleta.*;
 
@@ -32,24 +34,44 @@ public class VentanaRuleta extends JFrame{
 		getContentPane().add(panel, null);
 		panel.setLayout(null);
 		getContentPane().add(pBotones, BorderLayout.SOUTH);
-		panel.setBackground(Color.darkGray);
-		pBotones.setBackground(Color.GREEN);
+		panel.setBackground(new Color(5, 104, 54)); // Verde medio oscuro
+		pBotones.setBackground(new Color(6,43,22)); // Verde mas oscuro
 		
 		// BOTONES
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		}	
+		catch(Exception e) {}
 		final JButton bCobrar,bRojo,bNegro,bIniciar;
 		bCobrar = new JButton("COBRAR");
 		bRojo = new JButton("ROJO");
 		bNegro = new JButton("NEGRO");
 		bIniciar = new JButton("COMENZAR");
-		bCobrar.setSize(130, 30);
+		
 		bRojo.setSize(130, 30);
+		bRojo.setOpaque(true);
+		bRojo.setBackground(Color.red);
+		bRojo.setForeground(Color.WHITE);
 		bNegro.setSize(130, 30);
+		bNegro.setOpaque(true);
+		bNegro.setBackground(Color.BLACK);
+		bNegro.setForeground(Color.WHITE);
+		
+		bCobrar.setSize(130, 30);
 		bIniciar.setSize(260,60);
 		
+		pBotones.add(bIniciar);
 		pBotones.add(bCobrar);
 		pBotones.add(bRojo);
 		pBotones.add(bNegro);
-		pBotones.add(bIniciar);
 		
+		
+		JLabel dinero = new JLabel("Dinero:");
+		dinero.setSize(100,100);
+		dinero.setForeground(Color.WHITE);
+		pBotones.add(dinero);
+		JTextField cajaDinero = new JTextField();
+		cajaDinero.setSize(100,100);
+		pBotones.add(cajaDinero);
 	}
 }
