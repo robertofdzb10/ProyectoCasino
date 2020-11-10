@@ -5,5 +5,5 @@ package apuestas;
  */
 public class Deportes extends Apuesta{
 
-	
+
 }
