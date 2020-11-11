@@ -2,11 +2,20 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,7 +33,8 @@ public class VentanaTragaperras extends JFrame {
 	private boolean booleanHilo0;
 	private boolean booleanHilo1;
 	private boolean booleanHilo2;
-	
+	private BufferedImage image;
+
 	public VentanaTragaperras() {
 		
 	ventanaTragaperras = new JFrame();
@@ -52,10 +62,16 @@ public class VentanaTragaperras extends JFrame {
 	
 	//3.Decoraciones
 	
-	
+	try {
+		image = ImageIO.read(new File("src/imagenes/maquinaTragaperras.png"));
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	JLabel picLabel = new JLabel(new ImageIcon(image));
 	
 	//4.Asignacion de componenetes a contenedores
 	
+	panel.add(picLabel);
 	getContentPane().add( panel, null);
 	//panel.add(ranura0);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
@@ -73,6 +89,8 @@ public class VentanaTragaperras extends JFrame {
 			ranura0.Start( ranura0 );
 			ranura0.Start( ranura1 );
 			ranura0.Start( ranura2 );
+			panel.remove(picLabel);
+			repaint();
 			bStart.setEnabled(false);
 			Thread Hilo0 = new Thread() {
 				public void run() {
