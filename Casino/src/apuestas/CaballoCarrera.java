@@ -4,6 +4,7 @@ public class CaballoCarrera {
 	private float probabilidad;
 	private String nombre;
 	private float cuota;
+	private int prueba;
 	public CaballoCarrera(float probabilidad, String nombre, float cuota) {
 		super();
 		this.probabilidad = probabilidad;
