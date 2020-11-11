@@ -26,18 +26,17 @@ import tragaperras.Ranura;
  */
 public class VentanaTragaperras extends JFrame {
 	
-	private JFrame ventanaTragaperras;
 	private Ranura ranura0;
 	private Ranura ranura1;
 	private Ranura ranura2;
 	private boolean booleanHilo0;
 	private boolean booleanHilo1;
 	private boolean booleanHilo2;
-	private BufferedImage image;
+	private BufferedImage image00;
+	private BufferedImage image01;
 
 	public VentanaTragaperras() {
 		
-	ventanaTragaperras = new JFrame();
 	ranura0 = new Ranura("ranura0", 30, 1);
 	ranura1 = new Ranura("ranura1", 45, 2);
 	ranura2 = new Ranura("ranura2", 70, 3);
@@ -63,15 +62,23 @@ public class VentanaTragaperras extends JFrame {
 	//3.Decoraciones
 	
 	try {
-		image = ImageIO.read(new File("src/imagenes/maquinaTragaperras.png"));
+		image00 = ImageIO.read(new File("src/imagenes/maquinaTragaperras.png"));
 	} catch (IOException e) {
 		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
 	}
-	JLabel picLabel = new JLabel(new ImageIcon(image));
+	JLabel picLabel00 = new JLabel(new ImageIcon(image00));
+	
+	try {
+		image01 = ImageIO.read(new File("src/imagenes/maquinaTragaperrasBlanca.png"));
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	JLabel picLabel01 = new JLabel(new ImageIcon(image01));
+	
 	
 	//4.Asignacion de componenetes a contenedores
 	
-	panel.add(picLabel);
+	panel.add(picLabel00);
 	getContentPane().add( panel, null);
 	//panel.add(ranura0);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
@@ -86,11 +93,18 @@ public class VentanaTragaperras extends JFrame {
 	bStart.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			//****
+			panel.remove(picLabel00);
+			panel.add(picLabel01);
+			panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
+			repaint();
+			//****
+			
 			ranura0.Start( ranura0 );
 			ranura0.Start( ranura1 );
 			ranura0.Start( ranura2 );
-			panel.remove(picLabel);
-			repaint();
+
 			bStart.setEnabled(false);
 			Thread Hilo0 = new Thread() {
 				public void run() {
@@ -136,11 +150,23 @@ public class VentanaTragaperras extends JFrame {
 							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
 									JOptionPane.showMessageDialog(panel, "¡Ganador!");
+									panel.remove(picLabel01);
+									panel.add(picLabel00);
+									panel.revalidate();
+									repaint();
 								} else {
 									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
+									panel.remove(picLabel01);
+									panel.add(picLabel00);
+									panel.revalidate();
+									repaint();
 								}
 							}else {
-								
+								JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
+								panel.remove(picLabel01);
+								panel.add(picLabel00);
+								panel.revalidate();
+								repaint();
 							}
 							booleanHilo2 = true;
 						}
