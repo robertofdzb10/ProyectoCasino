@@ -51,7 +51,7 @@ public class VentanaTragaperras extends JFrame {
 	
 	//2. Creación de contenedores (paneles) y componenetes
 	
-	JPanel panel = new JPanel();
+	JPanel panel = new JPanel(new BorderLayout());//Hemos de crear primero el layout deseado
 	panel.setBackground(Color.WHITE);
 	JPanel botonera = new JPanel();
 	botonera.setBackground(Color.LIGHT_GRAY);
@@ -78,7 +78,7 @@ public class VentanaTragaperras extends JFrame {
 	
 	//4.Asignacion de componenetes a contenedores
 	
-	panel.add(picLabel00);
+	panel.add(picLabel00 , BorderLayout.CENTER);
 	getContentPane().add( panel, null);
 	//panel.add(ranura0);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
@@ -96,7 +96,7 @@ public class VentanaTragaperras extends JFrame {
 			
 			//****
 			panel.remove(picLabel00);
-			panel.add(picLabel01);
+			panel.add(picLabel01, BorderLayout.CENTER);
 			panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
 			repaint();
 			//****
@@ -151,20 +151,20 @@ public class VentanaTragaperras extends JFrame {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
 									JOptionPane.showMessageDialog(panel, "¡Ganador!");
 									panel.remove(picLabel01);
-									panel.add(picLabel00);
+									panel.add(picLabel00, BorderLayout.CENTER);
 									panel.revalidate();
 									repaint();
 								} else {
 									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
 									panel.remove(picLabel01);
-									panel.add(picLabel00);
+									panel.add(picLabel00, BorderLayout.CENTER);
 									panel.revalidate();
 									repaint();
 								}
 							}else {
 								JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
 								panel.remove(picLabel01);
-								panel.add(picLabel00);
+								panel.add(picLabel00, BorderLayout.CENTER);
 								panel.revalidate();
 								repaint();
 							}
