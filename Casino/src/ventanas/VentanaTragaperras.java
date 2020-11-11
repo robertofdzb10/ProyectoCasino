@@ -2,11 +2,20 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -17,17 +26,17 @@ import tragaperras.Ranura;
  */
 public class VentanaTragaperras extends JFrame {
 	
-	private JFrame ventanaTragaperras;
 	private Ranura ranura0;
 	private Ranura ranura1;
 	private Ranura ranura2;
 	private boolean booleanHilo0;
 	private boolean booleanHilo1;
 	private boolean booleanHilo2;
-	
+	private BufferedImage image00;
+	private BufferedImage image01;
+
 	public VentanaTragaperras() {
 		
-	ventanaTragaperras = new JFrame();
 	ranura0 = new Ranura("ranura0", 30, 1);
 	ranura1 = new Ranura("ranura1", 45, 2);
 	ranura2 = new Ranura("ranura2", 70, 3);
@@ -42,7 +51,7 @@ public class VentanaTragaperras extends JFrame {
 	
 	//2. Creación de contenedores (paneles) y componenetes
 	
-	JPanel panel = new JPanel();
+	JPanel panel = new JPanel(new BorderLayout());//Hemos de crear primero el layout deseado
 	panel.setBackground(Color.WHITE);
 	JPanel botonera = new JPanel();
 	botonera.setBackground(Color.LIGHT_GRAY);
@@ -52,10 +61,24 @@ public class VentanaTragaperras extends JFrame {
 	
 	//3.Decoraciones
 	
+	try {
+		image00 = ImageIO.read(new File("src/imagenes/maquinaTragaperras.png"));
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	JLabel picLabel00 = new JLabel(new ImageIcon(image00));
+	
+	try {
+		image01 = ImageIO.read(new File("src/imagenes/maquinaTragaperrasBlanca.png"));
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	JLabel picLabel01 = new JLabel(new ImageIcon(image01));
 	
 	
 	//4.Asignacion de componenetes a contenedores
 	
+	panel.add(picLabel00 , BorderLayout.CENTER);
 	getContentPane().add( panel, null);
 	//panel.add(ranura0);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
@@ -70,9 +93,18 @@ public class VentanaTragaperras extends JFrame {
 	bStart.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			//****
+			panel.remove(picLabel00);
+			panel.add(picLabel01, BorderLayout.CENTER);
+			panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
+			repaint();
+			//****
+			
 			ranura0.Start( ranura0 );
 			ranura0.Start( ranura1 );
 			ranura0.Start( ranura2 );
+
 			bStart.setEnabled(false);
 			Thread Hilo0 = new Thread() {
 				public void run() {
@@ -118,11 +150,23 @@ public class VentanaTragaperras extends JFrame {
 							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
 									JOptionPane.showMessageDialog(panel, "¡Ganador!");
+									panel.remove(picLabel01);
+									panel.add(picLabel00, BorderLayout.CENTER);
+									panel.revalidate();
+									repaint();
 								} else {
 									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
+									panel.remove(picLabel01);
+									panel.add(picLabel00, BorderLayout.CENTER);
+									panel.revalidate();
+									repaint();
 								}
 							}else {
-								
+								JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
+								panel.remove(picLabel01);
+								panel.add(picLabel00, BorderLayout.CENTER);
+								panel.revalidate();
+								repaint();
 							}
 							booleanHilo2 = true;
 						}
