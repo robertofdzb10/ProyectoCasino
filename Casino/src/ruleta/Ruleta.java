@@ -23,7 +23,6 @@ public class Ruleta {
 		}
 		aux.colocarCasillas();
 	}
-	
 	/** Metodo para añadir casillas al arraylist de las casillas, siendo NUM_MAX_CASILLAS el limite
 	 * @param casilla para añadir al arraylist
 	 * @return false si el ArrayList está lleno
@@ -32,9 +31,14 @@ public class Ruleta {
 		if(casillas.size() < NUM_MAX_CASILLAS) return casillas.add(casilla);
 		return false;
 	}
+	/** @return las casillas de la ruleta
+	 */
 	public ArrayList<Casilla> getCasillas() {
 		return casillas;
 	}
+	/** Establecer array de casillas
+	 * @param casillas
+	 */
 	public void setCasillas(ArrayList<Casilla> casillas) {
 		this.casillas = casillas;
 	}

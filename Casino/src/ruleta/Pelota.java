@@ -6,6 +6,7 @@ public class Pelota implements Movible{
 	private int velocidad, aceleracion, velocidadMax;
 	private Posicion posicion;
 	
+	/**CONSTRUCTOR PELOTA*/
 	public Pelota() {
 		this.velocidad = 0;
 		this.aceleracion = 3;
@@ -28,32 +29,49 @@ public class Pelota implements Movible{
 			this.posicion = new Posicion(x,y);
 		}
 	}
-	
-	
+	/**  @return la velocidad de la pelota
+	 */
 	public int getVelocidad() {
 		return velocidad;
 	}
+	/** Establecer la velocidad a la pelota
+	 * @param velocidad
+	 */
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
+	/** @return la aceleracion de la pelota
+	 */
 	public int getAceleracion() {
 		return aceleracion;
 	}
+	/** Establecer aceleracion de la pelota
+	 * @param aceleracion
+	 */
 	public void setAceleracion(int aceleracion) {
 		this.aceleracion = aceleracion;
 	}
+	/** Devuelve la velocidad maxima de la pelota
+	 * @return la velocidad maxima 
+	 */
 	public int getVelocidadMax() {
 		return velocidadMax;
 	}
+	/** Establecer velocidad maxima de pelota
+	 * @param velocidadMax
+	 */
 	public void setVelocidadMax(int velocidadMax) {
 		this.velocidadMax = velocidadMax;
 	}
+	/** @return la posicion de la pelota
+	 */
 	public Posicion getPosicion() {
 		return posicion;
 	}
-
+	/** Establecer la posicion de la pelota
+	 * @param posicion
+	 */
 	public void setPosicion(Posicion posicion) {
 		this.posicion = posicion;
 	}
-	
 }

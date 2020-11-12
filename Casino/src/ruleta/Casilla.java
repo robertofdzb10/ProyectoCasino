@@ -51,7 +51,7 @@ public class Casilla implements Iluminable{
 		if (_numero % 2 == 0 && _numero >= minParNegro && _numero <= maxParNegro) 
 			return new Casilla(_numero, Color.BLACK, this.posicion);	
 		// Negros impares
-		if( _numero % 2 != 0 && _numero >= minImparNegro && _numero<=maxImparNegro)
+		if( _numero % 2 != 0 && _numero >= minImparNegro && _numero <= maxImparNegro)
 			return new Casilla(_numero, Color.BLACK, this.posicion);
 		else
 			return null;
@@ -79,33 +79,37 @@ public class Casilla implements Iluminable{
 	public void iluminar() {
 		color = Color.cyan;
 	}
+	/** @return numero de casilla
+	 */
 	public int getNumero() {
 		return numero;
 	}
-	
+	/** Establecer numero a nueva casilla
+	 * @param numero
+	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-
-
+	/** @return el color de la casilla
+	 */
 	public Color getColor() {
 		return color;
 	}
-
-
+	/** Establecer color de casilla
+	 * @param color
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
-
-
+	/** @return posicion de la casilla
+	 */
 	public Posicion getPosicion() {
 		return posicion;
 	}
-
-
+	/** Establecer posicion de casilla
+	 * @param posicion
+	 */
 	public void setPosicion(Posicion posicion) {
 		this.posicion = posicion;
 	}
-
-
 }
