@@ -12,22 +12,40 @@ public class Pelota implements Movible{
 		this.aceleracion = 3;
 		this.velocidadMax = 80;
 	}
-	/** Metodo para hacer que la pelota se mueva
+	/**	Metodo para hacer que la pelota se mueva
 	 * alrededor de la ruleta hasta caer en una casilla
 	 */
-	public void mover(){
-		double x,y;
-		double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
-		double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
-		double angulo = 0;
-		double radio = Ruleta.RADIO_RULETA + 20;
-		double anguloCasillas = (2*Math.PI)/Ruleta.NUM_MAX_CASILLAS; 
-		for(int i = 0; i<100;i++) {
-			x = Math.cos(angulo)*(radio) + xOrigen;
-			y = Math.sin(angulo)*(radio) + yOrigen;
-			angulo += anguloCasillas;
-			this.posicion = new Posicion(x,y);
-		}
+	@Override
+	public void mover(Pelota pelota) {
+		Thread hilo = new Thread() {
+			public void run() {
+				double x,y;
+				double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
+				double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
+				double radio = Ruleta.RADIO_RULETA + 40;
+				double anguloCasillas = (2*Math.PI)/Ruleta.NUM_MAX_CASILLAS; 
+				double angulo = 0;
+				double limiteMovimiento = 10000;
+				// Movimiento circular
+				for(int i = 0; i<limiteMovimiento;i++) {
+					x = Math.cos(angulo)*(radio) + xOrigen;
+					y = Math.sin(angulo)*(radio) + yOrigen;
+					angulo += anguloCasillas;
+					pelota.posicion = new Posicion(x,y);
+					// Al final del movimiento se va acercando a las casillas
+					if(i >= (limiteMovimiento - 40)) {
+						radio--;
+					}
+					try {
+						sleep(5);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		hilo.start();
 	}
 	/**  @return la velocidad de la pelota
 	 */
