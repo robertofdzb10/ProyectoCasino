@@ -22,7 +22,7 @@ public class Pelota implements Movible{
 				double x,y;
 				double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
 				double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
-				double radio = Ruleta.RADIO_RULETA + 40;
+				double radio = Ruleta.RADIO_RULETA + 60;
 				double anguloCasillas = (2*Math.PI)/Ruleta.NUM_MAX_CASILLAS; 
 				double angulo = 0;
 				double limiteMovimiento = 10000;
@@ -33,13 +33,12 @@ public class Pelota implements Movible{
 					angulo += anguloCasillas;
 					pelota.posicion = new Posicion(x,y);
 					// Al final del movimiento se va acercando a las casillas
-					if(i >= (limiteMovimiento - 40)) {
+					if(i >= (limiteMovimiento - 60)) {
 						radio--;
 					}
 					try {
 						sleep(5);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

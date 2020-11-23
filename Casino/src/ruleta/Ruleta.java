@@ -36,10 +36,4 @@ public class Ruleta {
 	public ArrayList<Casilla> getCasillas() {
 		return casillas;
 	}
-	/** Establecer array de casillas
-	 * @param casillas
-	 */
-	public void setCasillas(ArrayList<Casilla> casillas) {
-		this.casillas = casillas;
-	}
 }
