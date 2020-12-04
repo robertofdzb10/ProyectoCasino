@@ -47,6 +47,11 @@ public class VentanaRuleta extends JFrame{
 		cDinero.setEditable(false);
 		pBotones.add(cDinero);
 		
+		ImageIcon iRuleta = new ImageIcon("pelota.png");
+		JLabel etiqueta = new JLabel(iRuleta);
+		etiqueta.setSize(50, 50);
+		panel.add(etiqueta);
+		
 		// BOTONES
 		try {
 			UIManager.setLookAndFeel(new MetalLookAndFeel());
