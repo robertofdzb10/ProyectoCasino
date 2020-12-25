@@ -15,7 +15,7 @@ public class Carreras extends Apuesta{
 		CaballoCarrera p4 = new CaballoCarrera(1/6,"Cigar",2);
 		CaballoCarrera p5 = new CaballoCarrera(1/10,"Seabiscuit",3);
 		CaballoCarrera p6 = new CaballoCarrera(1/30,"Citation",10);
-		CaballoCarrera p7 = new CaballoCarrera(1/10,"Tierry",3);
+		CaballoCarrera p7 = new CaballoCarrera(1/10,"Tierr",3);
 		participantes.add(p1);
 		participantes.add(p2);
 		participantes.add(p3);
