@@ -113,9 +113,10 @@ public class MenuRegistro extends JFrame{
 		m2.setVisible(true);
 	}
 	
-	public static void GuardarNick(String nick,String contraseÃ±a, HashMap<String, String> mapa){
-		if (contraseÃ±a != null) {
-			mapa.put(nick,contraseÃ±a);
+	
+	public static void GuardarNick(String nick,String contraseña, HashMap<String, String> mapa){
+		if (contraseña != null) {
+			mapa.put(nick,contraseña);
 			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
 			if (fichero.exists()) {
 				fichero.delete();

@@ -110,7 +110,7 @@ public class MenuLogin extends JFrame{
 		m2.setVisible(true);
 	}
 	
-	public boolean Ficheros(String nick, String contraseÃ±a,HashMap<String, String> mapa,boolean existe){
+	public boolean Ficheros(String nick, String contraseña,HashMap<String, String> mapa,boolean existe){
 		BufferedReader br;
 		try {
 			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
@@ -128,7 +128,7 @@ public class MenuLogin extends JFrame{
 					
 				}
 			}
-			if(mapa.get(nick).equals(contraseÃ±a)) {
+			if(mapa.get(nick).equals(contraseña)) {
 				existe = true;
 			}
 			else {
