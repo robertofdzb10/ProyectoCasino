@@ -48,7 +48,7 @@ public class MenuLogin extends JFrame{
 		etiqueta.setFont(new Font("arial",Font.BOLD, 45));
 		panel.add(etiqueta);
 		
-		JLabel etiqueta2= new JLabel("INICIAR SESIÃ“N");	
+		JLabel etiqueta2= new JLabel("INICIAR SESIÓN");	
 		etiqueta2.setSize(510, 80);
 		etiqueta2.setLocation(255,90 );
 		etiqueta2.setForeground(Color.BLUE);
