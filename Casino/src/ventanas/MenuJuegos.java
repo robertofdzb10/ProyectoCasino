@@ -182,7 +182,8 @@ public class MenuJuegos extends JFrame{
 				Thread Hilo = new Thread() {
 					public void run() {
 					
-						
+						VentanaApuesta v = new VentanaApuesta();
+						v.ventana();
 						
 					}
 					

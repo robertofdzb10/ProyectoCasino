@@ -1,9 +1,11 @@
 package apuestas;
 
-/** Clase padre abstracta Apuesta
- *	
- */
-public abstract class Apuestas {
+public interface Apuestas {
 
 	
+	public void ventana();
+	
+	public void apuestasPosibles();
+	
+	public void resultados();
 }

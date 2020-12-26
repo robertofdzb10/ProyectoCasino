@@ -1,14 +1,20 @@
 package apuestas;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /** 
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
  */
-public class Carreras extends Apuestas{
+public class Carreras extends JFrame implements Apuestas{
 	ArrayList<CaballoCarrera> participantes = new ArrayList<CaballoCarrera>();
 	
-	public void crearCaballos() {
+	public void apuestasPosibles() {
 		CaballoCarrera p1 = new CaballoCarrera(4/15,"Justify",(float) 1.3);
 		CaballoCarrera p2 = new CaballoCarrera(1/6,"Secretariat",2);
 		CaballoCarrera p3 = new CaballoCarrera(1/6,"Frankel",2);
@@ -23,5 +29,28 @@ public class Carreras extends Apuestas{
 		participantes.add(p5);
 		participantes.add(p6);
 		participantes.add(p7);
+	}
+	
+	public void ventana() {
+		
+		Carreras c = new Carreras();
+		c.setSize(900, 900);
+		JPanel panel = new JPanel();
+		c.getContentPane().add(panel);
+		panel.setLayout(null);
+		panel.setBackground(Color.BLACK);
+		JLabel etiqueta = new JLabel("APUESTAS DE CARRERAS");	
+		etiqueta.setSize(450, 40);
+		etiqueta.setLocation(250,10 );
+		etiqueta.setForeground(Color.GREEN);
+		etiqueta.setFont(new Font("arial",Font.BOLD, 45));
+		panel.add(etiqueta);
+		
+	}
+	
+
+	
+	public void resultados() {
+		
 	}
 }
