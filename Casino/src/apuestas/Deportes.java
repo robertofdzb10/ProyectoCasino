@@ -48,6 +48,7 @@ public void ventana() {
 	etiqueta.setForeground(Color.GREEN);
 	etiqueta.setFont(new Font("arial",Font.BOLD, 45));
 	panel.add(etiqueta);
+	d.setVisible(true);
 }
 
 

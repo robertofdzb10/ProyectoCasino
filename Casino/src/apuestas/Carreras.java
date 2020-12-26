@@ -45,6 +45,7 @@ public class Carreras extends JFrame implements Apuestas{
 		etiqueta.setForeground(Color.GREEN);
 		etiqueta.setFont(new Font("arial",Font.BOLD, 45));
 		panel.add(etiqueta);
+		c.setVisible(true);
 		
 	}
 	

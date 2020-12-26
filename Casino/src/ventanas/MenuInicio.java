@@ -61,7 +61,7 @@ public void portada() {
 		panel.add(etiqueta2);
 		
 		
-		final JButton boton1 = new JButton("INICIAR SESIÃ“N");
+		final JButton boton1 = new JButton("INICIAR SESIÓN");
 		boton1.setSize(130, 30);
 		boton1.setLocation(135, 615);
 		boton1.setBackground(Color.GRAY);
