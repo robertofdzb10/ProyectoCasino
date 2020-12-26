@@ -113,9 +113,9 @@ public class MenuLogin extends JFrame{
 	public boolean Ficheros(String nick, String contraseña,HashMap<String, String> mapa,boolean existe){
 		BufferedReader br;
 		try {
-			File fichero = new File("C:\\\\Users\\\\jogru\\\\git\\\\Casino\\\\Casino\\\\mapa.txt");
+			File fichero = new File("C:\\Users\\Anartz\\git\\ProyectoCasino\\Casino\\mapa.txt");
 			if (fichero.exists()) {
-				br = new BufferedReader(new FileReader("C:\\Users\\jogru\\git\\Casino\\Casino\\mapa.txt"));
+				br = new BufferedReader(new FileReader("C:\\Users\\Anartz\\git\\ProyectoCasino\\Casino\\mapa.txt"));
 				String linea = br.readLine();
 				
 				String linea2 = br.readLine();
