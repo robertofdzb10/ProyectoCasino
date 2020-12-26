@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /** 
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
  */
-public class Carreras extends Apuesta{
+public class Carreras extends Apuestas{
 	ArrayList<CaballoCarrera> participantes = new ArrayList<CaballoCarrera>();
 	
 	public void crearCaballos() {
