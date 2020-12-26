@@ -42,8 +42,8 @@ public class Carreras extends JFrame implements Apuestas{
 		JLabel etiqueta = new JLabel("APUESTAS DE CARRERAS");	
 		etiqueta.setSize(450, 40);
 		etiqueta.setLocation(250,10 );
-		etiqueta.setForeground(Color.GREEN);
-		etiqueta.setFont(new Font("arial",Font.BOLD, 45));
+		etiqueta.setForeground(Color.ORANGE);
+		etiqueta.setFont(new Font("arial",Font.BOLD, 28));
 		panel.add(etiqueta);
 		c.setVisible(true);
 		
