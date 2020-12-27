@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -95,6 +96,15 @@ public class Carreras extends JFrame implements Apuestas{
 		tabla.setBounds(30,40,200,300);          
 		JScrollPane sp=new JScrollPane(tabla);    
 		c.add(sp);  
+		
+		ImageIcon imagen1 = new ImageIcon("carreras2.jpg");
+		JLabel etiqueta3 = new JLabel(imagen1);
+		etiqueta3.setSize(1024, 578);
+		etiqueta3.setLocation(0,250);
+		panel.add(etiqueta3);
+		
+		
+
 		
 		c.setVisible(true);
 		

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,6 +56,14 @@ public void ventana() {
 	tabla.setBounds(30,40,200,300);          
 	JScrollPane sp=new JScrollPane(tabla);    
 	d.add(sp);               
+	
+	ImageIcon imagen1 = new ImageIcon("deportes3.jpg");
+	JLabel etiqueta3 = new JLabel(imagen1);
+	etiqueta3.setSize(1000, 667);
+	etiqueta3.setLocation(0,250);
+	panel.add(etiqueta3);
+
+	
 	d.setVisible(true);
 }
 
