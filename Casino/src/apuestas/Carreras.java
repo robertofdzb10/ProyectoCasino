@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /** 
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
@@ -82,7 +84,17 @@ public class Carreras extends JFrame implements Apuestas{
 		etiqueta.setFont(new Font("arial",Font.BOLD, 28));
 		panel.add(etiqueta);
 		
+		String [] nombresColumnas = {"Carrera","Caballo1-cuota","Caballo2-cuota","Caballo3-cuota","Caballo4-cuota","Caballo5-cuota","Caballo6-cuota","Caballo7-cuota"};
+		Object [] [] datosFila = {
+				{"Carrera1","Justify-1.3","Secretariat-2","Frankel-2","Cigar-2","Seabiscuit-3","Citacion-10","Tierry-3"},
+				{"Carrera2","ManOfWar-3","Henry-2","Admiral-10","Ruffian-3","Brew-1.3","Spectacular-2","Jones-2"},
+				{"Carrera3","Brave-10","Fire-3","Water-2","Wind-3","Snow-2","Earth-1.3","Hurricane-2"}
+		};
 		
+		JTable tabla = new JTable(datosFila,nombresColumnas);    
+		tabla.setBounds(30,40,200,300);          
+		JScrollPane sp=new JScrollPane(tabla);    
+		c.add(sp);  
 		
 		c.setVisible(true);
 		

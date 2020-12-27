@@ -44,64 +44,17 @@ public void ventana() {
 	etiqueta.setFont(new Font("arial",Font.BOLD, 35));
 	panel.add(etiqueta);
 	
-	String [] nombresColumnas = {"Equipo1","Equipo2","Ganador","Hora","Fecha","CuotaEquipo1","CuotaEmpate","CuotaEquipo2"};
+	String [] nombresColumnas = {"Partido","Equipo1","Equipo2","Ganador","Hora","Fecha","CuotaEquipo1","CuotaEmpate","CuotaEquipo2"};
 	Object [] [] datosFila = {
-			{"Leicester","ManUnited","null","13:30","2020-12-26","2","2.2","3"},
-			{"AstonVilla","CrystalPalace","null","16:00","2020-12-26","1.7","2.45","2.3"},
-			{"ManCity","Newcastle","null","21:00","2020-12-26","1.3","2.6","2.5"}
+			{"Partido1","Leicester","ManUnited","null","13:30","2020-12-26","2","2.2","3"},
+			{"Partido2","AstonVilla","CrystalPalace","null","16:00","2020-12-26","1.7","2.45","2.3"},
+			{"Partido3","ManCity","Newcastle","null","21:00","2020-12-26","1.3","2.6","2.5"}
 	};
 	
-	JTable tabla = new JTable(datosFila,nombresColumnas);
-	add(new JScrollPane(tabla),BorderLayout.CENTER);
-	final JButton boton1 = new JButton("APUESTAS DEPORTIVAS");
-
-	ActionListener escuchador = new ActionListener() {
-		
-		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Thread Hilo = new Thread() {
-					public void run() {
-
-						Deportes d = new Deportes();
-						d.ventana();
-						
-						
-					}
-					
-				};
-				Hilo.start();
-				
-			
-				
-				
-			
-		}
-	};
-	boton1.addActionListener(escuchador);
-	panel.add(boton1);
-	final JButton boton = new JButton("Imprimir");
-	boton.setSize(175, 30);
-	boton.setLocation(135, 440);
-	boton.setBackground(Color.GRAY);
-	boton.setForeground(Color.BLUE);
-	boton.addActionListener(new ActionListener(){
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			try {
-				tabla.print(getGraphics());
-			}catch(Exception e2){
-				e2.printStackTrace();
-			}
-			
-		}
-		
-	});
-	
-
-	panel.add(new JScrollPane(tabla));
-	panel.add(boton);
+	JTable tabla = new JTable(datosFila,nombresColumnas);    
+	tabla.setBounds(30,40,200,300);          
+	JScrollPane sp=new JScrollPane(tabla);    
+	d.add(sp);               
 	d.setVisible(true);
 }
 
