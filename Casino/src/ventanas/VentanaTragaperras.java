@@ -34,7 +34,8 @@ public class VentanaTragaperras extends JFrame {
 	private boolean booleanHilo2;
 	private BufferedImage image00;
 	private BufferedImage image01;
-
+	private BufferedImage image02;
+	
 	public VentanaTragaperras() {
 		
 	ranura0 = new Ranura("ranura0", 30, 1);
@@ -51,7 +52,7 @@ public class VentanaTragaperras extends JFrame {
 	
 	//2. Creación de contenedores (paneles) y componenetes
 	
-	JPanel panel = new JPanel(new BorderLayout());//Hemos de crear primero el layout deseado
+	JPanel panel = new JPanel( null );//Hemos de crear primero el layout deseado
 	panel.setBackground(Color.WHITE);
 	JPanel botonera = new JPanel();
 	botonera.setBackground(Color.LIGHT_GRAY);
@@ -74,13 +75,18 @@ public class VentanaTragaperras extends JFrame {
 		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	JLabel picLabel01 = new JLabel(new ImageIcon(image01));
-	
+	try {
+		image02 = ImageIO.read(new File("src/imagenes/ranuraMovimiento.png"));
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	JLabel picLabel02 = new JLabel(new ImageIcon(image02));
 	
 	//4.Asignacion de componenetes a contenedores
 	
-	panel.add(picLabel00 , BorderLayout.CENTER);
+	panel.add(picLabel00);
+	picLabel00.setBounds(-190, -350, 1000, 1000);//
 	getContentPane().add( panel, null);
-	//panel.add(ranura0);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
 	botonera.add(bStart);
 	botonera.add(bStop);
@@ -96,7 +102,10 @@ public class VentanaTragaperras extends JFrame {
 			
 			//****
 			panel.remove(picLabel00);
-			panel.add(picLabel01, BorderLayout.CENTER);
+			panel.add(picLabel01);
+			picLabel01.setBounds(10, 10, 1000, 1000);//
+			panel.add(picLabel02);
+			picLabel02.setBounds(100, 10, 1000, 1000);//
 			panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
 			repaint();
 			//****
@@ -151,20 +160,23 @@ public class VentanaTragaperras extends JFrame {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
 									JOptionPane.showMessageDialog(panel, "¡Ganador!");
 									panel.remove(picLabel01);
-									panel.add(picLabel00, BorderLayout.CENTER);
+									panel.add(picLabel00);
+									picLabel00.setBounds(10, 10, 100, 100);//
 									panel.revalidate();
 									repaint();
 								} else {
 									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
 									panel.remove(picLabel01);
-									panel.add(picLabel00, BorderLayout.CENTER);
+									panel.add(picLabel00);
+									picLabel00.setBounds(10, 10, 100, 100);//
 									panel.revalidate();
 									repaint();
 								}
 							}else {
 								JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
 								panel.remove(picLabel01);
-								panel.add(picLabel00, BorderLayout.CENTER);
+								panel.add(picLabel00);
+								picLabel00.setBounds(10, 10, 100, 100);//
 								panel.revalidate();
 								repaint();
 							}
