@@ -93,14 +93,13 @@ public class Carreras extends JFrame implements Apuestas{
 		};
 		
 		JTable tabla = new JTable(datosFila,nombresColumnas);    
-		tabla.setBounds(30,40,200,300);          
-		JScrollPane sp=new JScrollPane(tabla);    
-		c.add(sp);  
+		tabla.setBounds(30,95,750,50);          
+		panel.add(tabla);  
 		
 		ImageIcon imagen1 = new ImageIcon("carreras2.jpg");
 		JLabel etiqueta3 = new JLabel(imagen1);
 		etiqueta3.setSize(1024, 578);
-		etiqueta3.setLocation(0,250);
+		etiqueta3.setLocation(0,210);
 		panel.add(etiqueta3);
 		
 		

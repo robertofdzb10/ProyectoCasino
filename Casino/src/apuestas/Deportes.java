@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -53,15 +54,111 @@ public void ventana() {
 	};
 	
 	JTable tabla = new JTable(datosFila,nombresColumnas);    
-	tabla.setBounds(30,40,200,300);          
-	JScrollPane sp=new JScrollPane(tabla);    
-	d.add(sp);               
-	
+	tabla.setBounds(30,65,750,50);             
+	panel.add(tabla);               
+	String [] lista = {"Partido1","Partido2","Partido3"};
+	JList<String> jlista = new JList<String>(lista);
+	jlista.setVisibleRowCount(2);
+	jlista.setBounds(30, 128, 100, 60);
+	panel.add(jlista);
 	ImageIcon imagen1 = new ImageIcon("deportes3.jpg");
 	JLabel etiqueta3 = new JLabel(imagen1);
 	etiqueta3.setSize(1000, 667);
-	etiqueta3.setLocation(0,250);
+	etiqueta3.setLocation(0,170);
 	panel.add(etiqueta3);
+	
+	final JButton boton1 = new JButton("1");
+	boton1.setSize(50, 42);
+	boton1.setLocation(500, 128);
+	boton1.setBackground(Color.GREEN);
+	boton1.setForeground(Color.BLUE);
+	ActionListener escuchador = new ActionListener() {
+		
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread Hilo = new Thread() {
+					public void run() {
+
+						Deportes d = new Deportes();
+						d.ventana();
+						
+						
+					}
+					
+				};
+				Hilo.start();
+				
+			
+				
+				
+			
+		}
+	};
+	boton1.addActionListener(escuchador);
+	panel.add(boton1);
+	
+	final JButton boton2 = new JButton("X");
+	boton2.setSize(50, 42);
+	boton2.setLocation(570, 128);
+	boton2.setBackground(Color.GREEN);
+	boton2.setForeground(Color.BLUE);
+	ActionListener escuchador2 = new ActionListener() {
+		
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread Hilo = new Thread() {
+					public void run() {
+
+						Deportes d = new Deportes();
+						d.ventana();
+						
+						
+					}
+					
+				};
+				Hilo.start();
+				
+			
+				
+				
+			
+		}
+	};
+	boton2.addActionListener(escuchador2);
+	panel.add(boton2);
+	
+	final JButton boton3 = new JButton("2");
+	boton3.setSize(50, 42);
+	boton3.setLocation(640, 128);
+	boton3.setBackground(Color.GREEN);
+	boton3.setForeground(Color.BLUE);
+	ActionListener escuchador3 = new ActionListener() {
+		
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread Hilo = new Thread() {
+					public void run() {
+
+						Deportes d = new Deportes();
+						d.ventana();
+						
+						
+					}
+					
+				};
+				Hilo.start();
+				
+			
+				
+				
+			
+		}
+	};
+	boton3.addActionListener(escuchador3);
+	panel.add(boton3);
 
 	
 	d.setVisible(true);
