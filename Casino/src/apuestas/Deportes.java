@@ -54,12 +54,12 @@ public void ventana() {
 	};
 	
 	JTable tabla = new JTable(datosFila,nombresColumnas);    
-	tabla.setBounds(30,65,750,50);             
+	tabla.setBounds(30,55,750,50);             
 	panel.add(tabla);               
 	String [] lista = {"Partido1","Partido2","Partido3"};
 	JList<String> jlista = new JList<String>(lista);
 	jlista.setVisibleRowCount(2);
-	jlista.setBounds(30, 128, 100, 60);
+	jlista.setBounds(30, 110, 70, 55);
 	panel.add(jlista);
 	ImageIcon imagen1 = new ImageIcon("deportes3.jpg");
 	JLabel etiqueta3 = new JLabel(imagen1);
@@ -69,7 +69,7 @@ public void ventana() {
 	
 	final JButton boton1 = new JButton("1");
 	boton1.setSize(50, 42);
-	boton1.setLocation(500, 128);
+	boton1.setLocation(500, 115);
 	boton1.setBackground(Color.GREEN);
 	boton1.setForeground(Color.BLUE);
 	ActionListener escuchador = new ActionListener() {
@@ -80,8 +80,7 @@ public void ventana() {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						Deportes d = new Deportes();
-						d.ventana();
+					
 						
 						
 					}
@@ -100,7 +99,7 @@ public void ventana() {
 	
 	final JButton boton2 = new JButton("X");
 	boton2.setSize(50, 42);
-	boton2.setLocation(570, 128);
+	boton2.setLocation(570, 115);
 	boton2.setBackground(Color.GREEN);
 	boton2.setForeground(Color.BLUE);
 	ActionListener escuchador2 = new ActionListener() {
@@ -111,8 +110,7 @@ public void ventana() {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						Deportes d = new Deportes();
-						d.ventana();
+					
 						
 						
 					}
@@ -131,7 +129,7 @@ public void ventana() {
 	
 	final JButton boton3 = new JButton("2");
 	boton3.setSize(50, 42);
-	boton3.setLocation(640, 128);
+	boton3.setLocation(640, 115);
 	boton3.setBackground(Color.GREEN);
 	boton3.setForeground(Color.BLUE);
 	ActionListener escuchador3 = new ActionListener() {
@@ -142,8 +140,7 @@ public void ventana() {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						Deportes d = new Deportes();
-						d.ventana();
+					
 						
 						
 					}

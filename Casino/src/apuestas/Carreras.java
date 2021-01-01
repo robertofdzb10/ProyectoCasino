@@ -2,11 +2,15 @@ package apuestas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -93,14 +97,233 @@ public class Carreras extends JFrame implements Apuestas{
 		};
 		
 		JTable tabla = new JTable(datosFila,nombresColumnas);    
-		tabla.setBounds(30,95,750,50);          
+		tabla.setBounds(30,75,750,50);          
 		panel.add(tabla);  
+		String [] lista = {"Carrera1","Carrera2","Carrera3"};
+		JList<String> jlista = new JList<String>(lista);
+		jlista.setVisibleRowCount(2);
+		jlista.setBounds(30, 150, 70, 55);
+		panel.add(jlista);
 		
 		ImageIcon imagen1 = new ImageIcon("carreras2.jpg");
 		JLabel etiqueta3 = new JLabel(imagen1);
 		etiqueta3.setSize(1024, 578);
-		etiqueta3.setLocation(0,210);
+		etiqueta3.setLocation(0,230);
 		panel.add(etiqueta3);
+		
+		
+		final JButton boton1 = new JButton("Caballo1");
+		boton1.setSize(100, 42);
+		boton1.setLocation(115, 150);
+		boton1.setBackground(Color.GREEN);
+		boton1.setForeground(Color.BLUE);
+		ActionListener escuchador = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+					
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton1.addActionListener(escuchador);
+		panel.add(boton1);
+		
+		final JButton boton2 = new JButton("Caballo2");
+		boton2.setSize(100, 42);
+		boton2.setLocation(225, 150);
+		boton2.setBackground(Color.GREEN);
+		boton2.setForeground(Color.BLUE);
+		ActionListener escuchador2 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+					
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton2.addActionListener(escuchador2);
+		panel.add(boton2);
+		
+		final JButton boton3 = new JButton("Caballo3");
+		boton3.setSize(100, 42);
+		boton3.setLocation(335, 150);
+		boton3.setBackground(Color.GREEN);
+		boton3.setForeground(Color.BLUE);
+		ActionListener escuchador3 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton3.addActionListener(escuchador3);
+		panel.add(boton3);
+
+		
+		final JButton boton4 = new JButton("Caballo4");
+		boton4.setSize(100, 42);
+		boton4.setLocation(445, 150);
+		boton4.setBackground(Color.GREEN);
+		boton4.setForeground(Color.BLUE);
+		ActionListener escuchador4 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+					
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton4.addActionListener(escuchador4);
+		panel.add(boton4);
+		
+		final JButton boton5 = new JButton("Caballo5");
+		boton5.setSize(100, 42);
+		boton5.setLocation(555, 150);
+		boton5.setBackground(Color.GREEN);
+		boton5.setForeground(Color.BLUE);
+		ActionListener escuchador5 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton5.addActionListener(escuchador5);
+		panel.add(boton5);
+		
+		final JButton boton6 = new JButton("Caballo6");
+		boton6.setSize(100, 42);
+		boton6.setLocation(665, 150);
+		boton6.setBackground(Color.GREEN);
+		boton6.setForeground(Color.BLUE);
+		ActionListener escuchador6 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton6.addActionListener(escuchador6);
+		panel.add(boton6);
+
+		
+		final JButton boton7 = new JButton("Caballo7");
+		boton7.setSize(100, 42);
+		boton7.setLocation(775, 150);
+		boton7.setBackground(Color.GREEN);
+		boton7.setForeground(Color.BLUE);
+		ActionListener escuchador7 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+					
+							
+							
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton7.addActionListener(escuchador7);
+		panel.add(boton7);
+		
+
+
+	
 		
 		
 
