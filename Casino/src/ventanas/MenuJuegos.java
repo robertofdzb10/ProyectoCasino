@@ -23,7 +23,7 @@ public class MenuJuegos extends JFrame{
 	
 	
 	
-	public  void juegos(){
+	public  void juegos(String nick){
 	
 	
 	MenuJuegos m2 = new MenuJuegos();
@@ -173,6 +173,7 @@ public class MenuJuegos extends JFrame{
 	final JButton boton5 = new JButton("APUESTAS");
 	boton5.setSize(175, 30);
 	boton5.setLocation(380, 825);
+	//boton5.setLocation(770,465);
 	boton5.setBackground(Color.GRAY);
 	ActionListener escuchador5 = new ActionListener() {
 		
@@ -183,7 +184,7 @@ public class MenuJuegos extends JFrame{
 					public void run() {
 					
 						VentanaApuesta v = new VentanaApuesta();
-						v.ventana();
+						v.ventana(nick);
 						
 					}
 					

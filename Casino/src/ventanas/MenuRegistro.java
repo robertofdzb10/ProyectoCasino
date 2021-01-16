@@ -92,7 +92,7 @@ public class MenuRegistro extends JFrame{
 						public void run() {
 							GuardarNick(caja.getText(),caja2.getText(),mapa);
 							MenuJuegos m = new MenuJuegos();
-							m.juegos();
+							m.juegos(caja.getText());
 							
 							
 							

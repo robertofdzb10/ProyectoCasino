@@ -21,7 +21,7 @@ public class VentanaApuesta extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void ventana() {
+	public void ventana(String nick) {
 		VentanaApuesta v = new VentanaApuesta();
 		v.setSize(900, 900);
 		JPanel panel = new JPanel();
@@ -57,7 +57,7 @@ public class VentanaApuesta extends JFrame{
 		panel.add(etiqueta4);
 		
 		final JButton boton1 = new JButton("APUESTAS DEPORTIVAS");
-		boton1.setSize(175, 30);
+		boton1.setSize(215, 30);
 		boton1.setLocation(135, 440);
 		boton1.setBackground(Color.GRAY);
 		boton1.setForeground(Color.BLUE);
@@ -70,7 +70,7 @@ public class VentanaApuesta extends JFrame{
 						public void run() {
 
 							Deportes d = new Deportes();
-							d.ventana();
+							d.ventana(nick);
 							
 							
 						}
@@ -88,7 +88,7 @@ public class VentanaApuesta extends JFrame{
 		panel.add(boton1);
 		
 		final JButton boton2 = new JButton("APUESTAS DE CARRERAS");
-		boton2.setSize(185, 30);
+		boton2.setSize(215, 30);
 		boton2.setLocation(425, 440);
 		boton2.setBackground(Color.GRAY);
 		boton2.setForeground(Color.BLUE);
@@ -102,7 +102,7 @@ public class VentanaApuesta extends JFrame{
 
 							
 							Carreras c = new Carreras();
-							c.ventana();
+							c.ventana(nick);
 							
 						}
 						

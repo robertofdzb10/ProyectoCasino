@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,17 +15,29 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /** 
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
  */
 public class Carreras extends JFrame implements Apuestas{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<ArrayList<CaballoCarrera> > carreras = new ArrayList<ArrayList<CaballoCarrera> >();
 	ArrayList<CaballoCarrera> participantes1 = new ArrayList<CaballoCarrera>();
 	ArrayList<CaballoCarrera> participantes2 = new ArrayList<CaballoCarrera>();
 	ArrayList<CaballoCarrera> participantes3 = new ArrayList<CaballoCarrera>();
+	String seleccion = "";
+	int contador = 0;
+	HashMap<String, String> mapaC = new HashMap<String, String>();
+	HashMap<String, String> mapaResC = new HashMap<String, String>();
+	ArrayList<String> resC = new ArrayList<String>();
+	ArrayList<HashMap<String, String>> mapasC = new ArrayList<HashMap<String, String>>();
 	
-	public void apuestasPosibles() {
+	public void apuestasPosibles(String nick) {
 		CaballoCarrera p11 = new CaballoCarrera(4/15,"Justify",(float) 1.3);
 		CaballoCarrera p12 = new CaballoCarrera(1/6,"Secretariat",2);
 		CaballoCarrera p13 = new CaballoCarrera(1/6,"Frankel",2);
@@ -74,7 +87,7 @@ public class Carreras extends JFrame implements Apuestas{
 		carreras.add(participantes3);
 	}
 	
-	public void ventana() {
+	public void ventana(String nick) {
 		
 		Carreras c = new Carreras();
 		c.setSize(900, 900);
@@ -104,6 +117,13 @@ public class Carreras extends JFrame implements Apuestas{
 		jlista.setVisibleRowCount(2);
 		jlista.setBounds(30, 150, 70, 55);
 		panel.add(jlista);
+		jlista.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				seleccion = String.valueOf(jlista.getSelectedIndex() + 1);
+			}
+		});
 		
 		ImageIcon imagen1 = new ImageIcon("carreras2.jpg");
 		JLabel etiqueta3 = new JLabel(imagen1);
@@ -126,7 +146,7 @@ public class Carreras extends JFrame implements Apuestas{
 						public void run() {
 
 					
-							
+							seleccion += "-1";
 							
 						}
 						
@@ -155,7 +175,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-					
+							seleccion += "-2";
 							
 							
 						}
@@ -185,7 +205,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							
+							seleccion += "-3";
 							
 						}
 						
@@ -215,7 +235,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-					
+							seleccion += "-4";
 							
 							
 						}
@@ -245,7 +265,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							
+							seleccion += "-5";
 							
 						}
 						
@@ -274,7 +294,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							
+							seleccion += "-6";
 							
 						}
 						
@@ -305,7 +325,7 @@ public class Carreras extends JFrame implements Apuestas{
 						public void run() {
 
 					
-							
+							seleccion += "-7";
 							
 						}
 						
@@ -322,7 +342,73 @@ public class Carreras extends JFrame implements Apuestas{
 		panel.add(boton7);
 		
 
+		final JButton boton8 = new JButton("APOSTAR");
+		boton8.setSize(100, 42);
+		boton8.setLocation(785, 75);
+		boton8.setBackground(Color.red);
+		boton8.setForeground(Color.white);
+		ActionListener escuchador8 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
 
+							mapaC.put(seleccion,nick);
+							System.out.println(mapaC);
+							seleccion = "";
+							contador += 1;
+							if(contador > 6) {
+								mapasC.add(mapaC);
+							}
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton8.addActionListener(escuchador8);
+		panel.add(boton8);
+		
+		final JButton boton9 = new JButton("RESULTADOS");
+		boton9.setSize(150, 42);
+		boton9.setLocation(725, 25);
+		boton9.setBackground(Color.blue);
+		boton9.setForeground(Color.white);
+		ActionListener escuchador9 = new ActionListener() {
+			
+			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Thread Hilo = new Thread() {
+						public void run() {
+
+							mapaC.put(seleccion,nick);
+							System.out.println(mapaC);
+							seleccion = "";
+							contador += 1;
+							if(contador > 6) {
+								mapasC.add(mapaC);
+							}
+						}
+						
+					};
+					Hilo.start();
+					
+				
+					
+					
+				
+			}
+		};
+		boton9.addActionListener(escuchador9);
+		panel.add(boton9);
 	
 		
 		
@@ -337,6 +423,33 @@ public class Carreras extends JFrame implements Apuestas{
 
 	
 	public void resultados() {
+		
+		resC.add("1-7");
+		resC.add("2-1");
+		resC.add("3-5");
+		for(HashMap<String, String> mapa : mapasC) {
+			for(String s : mapa.keySet()) {
+				for(int i = 0; i < resC.size(); i++) {
+					System.out.println(s);
+					if(s.equals(resC.get(i))) {
+						mapaResC.put(s, mapa.get(s));
+					}
+				}
+				
+			}
+		}
+		System.out.println(mapaResC);
+	}
+
+	@Override
+	public void apuestasPosibles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ventana() {
+		// TODO Auto-generated method stub
 		
 	}
 }

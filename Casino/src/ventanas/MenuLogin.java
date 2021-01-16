@@ -87,7 +87,7 @@ public class MenuLogin extends JFrame{
 							existe = Ficheros(caja.getText(),caja2.getText(),mapa,existe);
 							if(existe == true) {
 								MenuJuegos m = new MenuJuegos();
-								m.juegos();
+								m.juegos(caja.getText());
 							}
 							
 							

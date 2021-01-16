@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +17,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import ventanas.MenuJuegos;
 
@@ -22,15 +26,19 @@ import ventanas.MenuJuegos;
  * Deportes un tipo de apuesta donde habra multiples posibilidades de apuesta
  */
 public class Deportes extends JFrame implements Apuestas {
-	ArrayList<String []> partidos = new ArrayList<String []>();
-
-public void apuestasPosibles() {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	HashMap<String, String> mapaD = new HashMap<String, String>();
+	HashMap<String, String> mapaResD = new HashMap<String, String>();
+	String seleccion = "";
+	int contador = 0;
+	ArrayList<HashMap<String, String>> mapasD = new ArrayList<HashMap<String, String>>();
+	ArrayList<String> resD = new ArrayList<String>();
 	
 
-}
-
-public void ventana() {
+public void ventana(String nick) {
 	
 	
 	Deportes d = new Deportes();
@@ -55,12 +63,19 @@ public void ventana() {
 	
 	JTable tabla = new JTable(datosFila,nombresColumnas);    
 	tabla.setBounds(30,55,750,50);             
-	panel.add(tabla);               
+	panel.add(tabla);             
 	String [] lista = {"Partido1","Partido2","Partido3"};
 	JList<String> jlista = new JList<String>(lista);
 	jlista.setVisibleRowCount(2);
 	jlista.setBounds(30, 110, 70, 55);
 	panel.add(jlista);
+	jlista.addListSelectionListener(new ListSelectionListener() {
+		
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			seleccion = String.valueOf(jlista.getSelectedIndex() + 1);
+		}
+	});
 	ImageIcon imagen1 = new ImageIcon("deportes3.jpg");
 	JLabel etiqueta3 = new JLabel(imagen1);
 	etiqueta3.setSize(1000, 667);
@@ -81,7 +96,7 @@ public void ventana() {
 					public void run() {
 
 					
-						
+						seleccion += "-1";
 						
 					}
 					
@@ -110,7 +125,7 @@ public void ventana() {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-					
+						seleccion += "-X";
 						
 						
 					}
@@ -140,7 +155,7 @@ public void ventana() {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-					
+						seleccion += "-2";
 						
 						
 					}
@@ -156,15 +171,105 @@ public void ventana() {
 	};
 	boton3.addActionListener(escuchador3);
 	panel.add(boton3);
+	
+	final JButton boton4 = new JButton("APOSTAR");
+	boton4.setSize(100, 42);
+	boton4.setLocation(180, 115);
+	boton4.setBackground(Color.red);
+	boton4.setForeground(Color.white);
+	ActionListener escuchador4 = new ActionListener() {
+		
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread Hilo = new Thread() {
+					public void run() {
+
+						mapaD.put(seleccion,nick);
+						seleccion = "";
+						contador += 1;
+						if(contador > 2) {
+							mapasD.add(mapaD);
+						}
+					}
+					
+				};
+				Hilo.start();
+				
+			
+				
+				
+			
+		}
+	};
+	boton4.addActionListener(escuchador4);
+	panel.add(boton4);
+	
+	final JButton boton5 = new JButton("RESULTADOS");
+	boton5.setSize(130, 42);
+	boton5.setLocation(350, 115);
+	boton5.setBackground(Color.blue);
+	boton5.setForeground(Color.white);
+	ActionListener escuchador5 = new ActionListener() {
+		
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread Hilo = new Thread() {
+					public void run() {
+
+						resultados();
+					}
+					
+				};
+				Hilo.start();
+				
+			
+				
+				
+			
+		}
+	};
+	boton5.addActionListener(escuchador5);
+	panel.add(boton5);
+	
+	
 
 	
 	d.setVisible(true);
-}
+
+    }
+	
+	
+
 
 
 public void resultados() {
+	resD.add("1-2");
+	resD.add("2-X");
+	resD.add("3-1");
+	for(HashMap<String, String> mapa : mapasD) {
+		for(String s : mapa.keySet()) {
+			for(int i = 0; i < resD.size(); i++) {
+				System.out.println(s);
+				if(s.equals(resD.get(i))) {
+					mapaResD.put(s, mapa.get(s));
+				}
+			}
+			
+		}
+	}
+	System.out.println(mapaResD);
+}
+
+@Override
+public void ventana() {
+	// TODO Auto-generated method stub
 	
 }
+public void apuestasPosibles() {
+}
+
 
 	
 }
