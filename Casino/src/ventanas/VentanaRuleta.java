@@ -14,8 +14,8 @@ import ruleta.*;
  * Ventana para la ruleta
  */
 public class VentanaRuleta extends JFrame{
-	public static final int ANCHO_VENTANA_RULETA = 1000;
-	public static final int ALTO_VENTANA_RULETA = 700;
+	public static final int ANCHO_VENTANA_RULETA = 1200;
+	public static final int ALTO_VENTANA_RULETA = 1000;
 	
 	private JFrame ventanaRuleta;
 	private Pelota pelota;
@@ -47,11 +47,6 @@ public class VentanaRuleta extends JFrame{
 		cDinero.setEditable(false);
 		pBotones.add(cDinero);
 		
-		ImageIcon iRuleta = new ImageIcon("pelota.png");
-		JLabel etiqueta = new JLabel(iRuleta);
-		etiqueta.setSize(50, 50);
-		panel.add(etiqueta);
-		
 		// BOTONES
 		try {
 			UIManager.setLookAndFeel(new MetalLookAndFeel());
@@ -79,6 +74,9 @@ public class VentanaRuleta extends JFrame{
 		pBotones.add(bRojo);
 		pBotones.add(bNegro);
 		
-		
+		ImageIcon imagenRuleta = new ImageIcon("ruleta.png");
+		JLabel lRuleta = new JLabel(imagenRuleta);
+		lRuleta.setSize(600,600);
+		panel.add(lRuleta, BorderLayout.SOUTH);
 	}
 }
