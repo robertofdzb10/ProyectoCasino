@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionListener;
 import ventanas.MenuJuegos;
 
 /**
- * Deportes un tipo de apuesta donde habra multiples posibilidades de apuesta
+ * Deportes un tipo de apuesta donde habrá multiples posibilidades de apuesta
  */
 public class Deportes extends JFrame implements Apuestas {
 	/**
