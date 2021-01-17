@@ -18,7 +18,7 @@ public class Pelota implements Movible{
 	@Override
 	public void mover(Pelota pelota) {
 		Thread hilo = new Thread() {
-			public void run() { //
+			public void run() { 
 				double x,y;
 				double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
 				double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
