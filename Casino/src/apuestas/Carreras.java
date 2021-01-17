@@ -25,7 +25,7 @@ public class Carreras extends JFrame implements Apuestas{
 
 	private static final long serialVersionUID = 1L;
 
-	String seleccion = "1";
+	String seleccion = "";
 	int contador = 0;
 	HashMap<String, String> mapaC = new HashMap<String, String>();
 	HashMap<String, String> mapaResC = new HashMap<String, String>();
