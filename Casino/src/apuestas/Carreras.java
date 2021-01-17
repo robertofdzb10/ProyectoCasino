@@ -22,14 +22,9 @@ import javax.swing.event.ListSelectionListener;
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
  */
 public class Carreras extends JFrame implements Apuestas{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	ArrayList<ArrayList<CaballoCarrera> > carreras = new ArrayList<ArrayList<CaballoCarrera> >();
-	ArrayList<CaballoCarrera> participantes1 = new ArrayList<CaballoCarrera>();
-	ArrayList<CaballoCarrera> participantes2 = new ArrayList<CaballoCarrera>();
-	ArrayList<CaballoCarrera> participantes3 = new ArrayList<CaballoCarrera>();
+
 	String seleccion = "";
 	int contador = 0;
 	HashMap<String, String> mapaC = new HashMap<String, String>();
@@ -37,55 +32,7 @@ public class Carreras extends JFrame implements Apuestas{
 	ArrayList<String> resC = new ArrayList<String>();
 	ArrayList<HashMap<String, String>> mapasC = new ArrayList<HashMap<String, String>>();
 	
-	public void apuestasPosibles(String nick) {
-		CaballoCarrera p11 = new CaballoCarrera(4/15,"Justify",(float) 1.3);
-		CaballoCarrera p12 = new CaballoCarrera(1/6,"Secretariat",2);
-		CaballoCarrera p13 = new CaballoCarrera(1/6,"Frankel",2);
-		CaballoCarrera p14 = new CaballoCarrera(1/6,"Cigar",2);
-		CaballoCarrera p15 = new CaballoCarrera(1/10,"Seabiscuit",3);
-		CaballoCarrera p16 = new CaballoCarrera(1/30,"Citation",10);
-		CaballoCarrera p17 = new CaballoCarrera(1/10,"Tierry",3);
-		participantes1.add(p11);
-		participantes1.add(p12);
-		participantes1.add(p13);
-		participantes1.add(p14);
-		participantes1.add(p15);
-		participantes1.add(p16);
-		participantes1.add(p17);
-		
-		CaballoCarrera p21 = new CaballoCarrera(1/10,"ManOfWar",3);
-		CaballoCarrera p22 = new CaballoCarrera(1/6,"Henry",2);
-		CaballoCarrera p23 = new CaballoCarrera(1/30,"Admiral",10);
-		CaballoCarrera p24 = new CaballoCarrera(1/10,"Ruffian",3);
-		CaballoCarrera p25 = new CaballoCarrera(4/15,"Brew",(float) 1.3);
-		CaballoCarrera p26 = new CaballoCarrera(1/6,"Spectacular",2);
-		CaballoCarrera p27 = new CaballoCarrera(1/6,"Jones",2);
-		participantes2.add(p21);
-		participantes2.add(p22);
-		participantes2.add(p23);
-		participantes2.add(p24);
-		participantes2.add(p25);
-		participantes2.add(p26);
-		participantes2.add(p27);
-		
-		CaballoCarrera p31 = new CaballoCarrera(1/30,"Brave",10);
-		CaballoCarrera p32 = new CaballoCarrera(1/10,"Fire",3);
-		CaballoCarrera p33 = new CaballoCarrera(1/6,"Water",2);
-		CaballoCarrera p34 = new CaballoCarrera(1/10,"Wind",3);
-		CaballoCarrera p35 = new CaballoCarrera(1/6,"Snow",2);
-		CaballoCarrera p36 = new CaballoCarrera(4/15,"Earth",(float) 1.3);
-		CaballoCarrera p37 = new CaballoCarrera(1/6,"Hurricane",2);
-		participantes3.add(p31);
-		participantes3.add(p32);
-		participantes3.add(p33);
-		participantes3.add(p34);
-		participantes3.add(p35);
-		participantes3.add(p36);
-		participantes3.add(p37);
-		carreras.add(participantes1);
-		carreras.add(participantes2);
-		carreras.add(participantes3);
-	}
+
 	
 	public void ventana(String nick) {
 		
@@ -354,12 +301,10 @@ public class Carreras extends JFrame implements Apuestas{
 				public void actionPerformed(ActionEvent e) {
 					Thread Hilo = new Thread() {
 						public void run() {
-
 							mapaC.put(seleccion,nick);
-							System.out.println(mapaC);
 							seleccion = "";
 							contador += 1;
-							if(contador > 6) {
+							if(contador > 2) {
 								mapasC.add(mapaC);
 							}
 						}
@@ -389,14 +334,9 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							mapaC.put(seleccion,nick);
-							System.out.println(mapaC);
-							seleccion = "";
-							contador += 1;
-							if(contador > 6) {
-								mapasC.add(mapaC);
+							resultados();
 							}
-						}
+						
 						
 					};
 					Hilo.start();
@@ -423,14 +363,12 @@ public class Carreras extends JFrame implements Apuestas{
 
 	
 	public void resultados() {
-		
 		resC.add("1-7");
 		resC.add("2-1");
 		resC.add("3-5");
 		for(HashMap<String, String> mapa : mapasC) {
 			for(String s : mapa.keySet()) {
 				for(int i = 0; i < resC.size(); i++) {
-					System.out.println(s);
 					if(s.equals(resC.get(i))) {
 						mapaResC.put(s, mapa.get(s));
 					}
@@ -441,15 +379,5 @@ public class Carreras extends JFrame implements Apuestas{
 		System.out.println(mapaResC);
 	}
 
-	@Override
-	public void apuestasPosibles() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void ventana() {
-		// TODO Auto-generated method stub
-		
-	}
 }

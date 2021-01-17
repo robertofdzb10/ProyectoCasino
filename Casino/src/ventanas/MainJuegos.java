@@ -11,10 +11,17 @@ public class MainJuegos {
 		VentanaRuleta ventanaRuleta = new VentanaRuleta();
 		ventanaRuleta.setVisible(true);
 		
+<<<<<<< HEAD
 //		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
 //		ventanaTragaperras.setVisible(true);
 //		MenuInicio m = new MenuInicio();
 //		m.setVisible(true);
+=======
+		//VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
+		//ventanaTragaperras.setVisible(true);
+		//MenuInicio m = new MenuInicio();
+		//m.setVisible(true);
+>>>>>>> branch 'master' of https://github.com/robertofdzb10/ProyectoCasino.git
 		
 	}
 }
