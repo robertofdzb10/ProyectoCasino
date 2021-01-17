@@ -25,7 +25,7 @@ import ventanas.MenuJuegos;
 /**
  * Deportes un tipo de apuesta donde habrá multiples posibilidades de apuesta
  */
-public class Deportes extends JFrame implements Apuestas {
+public class Deportes extends JFrame implements Apuestas{
 	/**
 	 * 
 	 */
@@ -251,7 +251,6 @@ public void resultados() {
 	for(HashMap<String, String> mapa : mapasD) {
 		for(String s : mapa.keySet()) {
 			for(int i = 0; i < resD.size(); i++) {
-				System.out.println(s);
 				if(s.equals(resD.get(i))) {
 					mapaResD.put(s, mapa.get(s));
 				}
@@ -262,13 +261,7 @@ public void resultados() {
 	System.out.println(mapaResD);
 }
 
-@Override
-public void ventana() {
-	// TODO Auto-generated method stub
-	
-}
-public void apuestasPosibles() {
-}
+
 
 
 	
