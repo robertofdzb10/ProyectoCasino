@@ -42,7 +42,7 @@ public class VentanaRuleta extends JFrame{
 		JLabel dinero = new JLabel("Dinero:");
 		dinero.setSize(100,100);
 		dinero.setForeground(Color.WHITE);
-		pBotones.add(dinero);
+		pBotones.add(dinero); 
 		JTextField cDinero = new JTextField(7); // cajetin donde pondrá el dinero disponible
 		cDinero.setEditable(false);
 		pBotones.add(cDinero);
