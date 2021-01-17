@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.MouseInfo;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -79,5 +80,16 @@ public class VentanaRuleta extends JFrame{
 		lRuleta.setSize(600,600);
 		lRuleta.setLocation(300,200);
 		panel.add(lRuleta);
+		
+//		while(true){
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			cDinero.setText("(" + MouseInfo.getPointerInfo().getLocation().x + 
+//	                 ", " + 
+//		        		MouseInfo.getPointerInfo().getLocation().y + ")");
+//		}
 	}
 }
