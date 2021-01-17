@@ -77,6 +77,7 @@ public class VentanaRuleta extends JFrame{
 		ImageIcon imagenRuleta = new ImageIcon("ruleta.png");
 		JLabel lRuleta = new JLabel(imagenRuleta);
 		lRuleta.setSize(600,600);
-		panel.add(lRuleta, BorderLayout.SOUTH);
+		lRuleta.setLocation(300,200);
+		panel.add(lRuleta);
 	}
 }
