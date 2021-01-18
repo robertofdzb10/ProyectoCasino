@@ -25,6 +25,7 @@ public class MenuInicio extends JFrame{
 	 * 
 	 */
 	public static HashMap<String, String> mapa = new HashMap<String, String>();
+	public static HashMap<String, Float> mapaDinero = new HashMap<String, Float>();
 	private static final long serialVersionUID = 1L;
 
 
@@ -73,7 +74,7 @@ public void portada() {
 					Thread Hilo = new Thread() {
 						public void run() {
 							MenuLogin m2 = new MenuLogin();
-							m2.iniciarSesion(mapa);
+							m2.iniciarSesion(mapa,mapaDinero);
 							
 							
 						}
@@ -104,7 +105,7 @@ public void portada() {
 					 
 					 
 					MenuRegistro m3 = new MenuRegistro();
-					m3.registarse(mapa);
+					m3.registarse(mapa,mapaDinero);
 					
 				
 					

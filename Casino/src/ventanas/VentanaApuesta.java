@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +22,7 @@ public class VentanaApuesta extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void ventana(String nick) {
+	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 		VentanaApuesta v = new VentanaApuesta();
 		v.setSize(900, 900);
 		JPanel panel = new JPanel();
@@ -70,7 +71,7 @@ public class VentanaApuesta extends JFrame{
 						public void run() {
 
 							Deportes d = new Deportes();
-							d.ventana(nick);
+							d.ventana(nick,mapaDinero);
 							
 							
 						}
@@ -102,7 +103,7 @@ public class VentanaApuesta extends JFrame{
 
 							
 							Carreras c = new Carreras();
-							c.ventana(nick);
+							c.ventana(nick,mapaDinero);
 							
 						}
 						

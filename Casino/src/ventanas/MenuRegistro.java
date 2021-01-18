@@ -38,7 +38,7 @@ public class MenuRegistro extends JFrame{
 
 	
 	
-	public void registarse(HashMap<String, String> mapa) {
+	public void registarse(HashMap<String, String> mapa,HashMap<String, Float> mapaDinero) {
 		
 		
 		MenuRegistro m2 = new MenuRegistro();
@@ -91,8 +91,9 @@ public class MenuRegistro extends JFrame{
 					Thread Hilo = new Thread() {
 						public void run() {
 							GuardarNick(caja.getText(),caja2.getText(),mapa);
+							mapaDinero.put(caja.getText(), 1000f);
 							MenuJuegos m = new MenuJuegos();
-							m.juegos(caja.getText());
+							m.juegos(caja.getText(),mapaDinero);
 							
 							
 							

@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,15 +31,15 @@ public class Deportes extends JFrame implements Apuestas{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	HashMap<String, String> mapaD = new HashMap<String, String>();
-	HashMap<String, String> mapaResD = new HashMap<String, String>();
+	HashMap<String, Float> mapaD = new HashMap<String, Float>();
+	HashMap<String, Float> mapaResD = new HashMap<String, Float>();
 	String seleccion = "";
 	int contador = 0;
-	ArrayList<HashMap<String, String>> mapasD = new ArrayList<HashMap<String, String>>();
+	ArrayList<HashMap<String, Float>> mapasD = new ArrayList<HashMap<String, Float>>();
 	ArrayList<String> resD = new ArrayList<String>();
 	
 
-public void ventana(String nick) {
+public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 	
 	
 	Deportes d = new Deportes();
@@ -81,6 +82,10 @@ public void ventana(String nick) {
 	etiqueta3.setSize(1000, 667);
 	etiqueta3.setLocation(0,170);
 	panel.add(etiqueta3);
+	
+	JTextField caja = new JTextField();
+	caja.setBounds(720, 140, 120, 20);
+	panel.add(caja);
 	
 	final JButton boton1 = new JButton("1");
 	boton1.setSize(50, 42);
@@ -185,7 +190,7 @@ public void ventana(String nick) {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						mapaD.put(seleccion,nick);
+						mapaD.put(seleccion,Float.parseFloat(caja.getText()));
 						seleccion = "";
 						contador += 1;
 						if(contador > 2) {
@@ -218,7 +223,7 @@ public void ventana(String nick) {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						resultados();
+						resultados(mapaDinero,nick);
 					}
 					
 				};
@@ -233,6 +238,13 @@ public void ventana(String nick) {
 	boton5.addActionListener(escuchador5);
 	panel.add(boton5);
 	
+	JLabel etiqueta2 = new JLabel("CANTIDAD");	
+	etiqueta2.setSize(120, 40);
+	etiqueta2.setLocation(735,110 );
+	etiqueta2.setForeground(Color.CYAN);
+	etiqueta2.setFont(new Font("arial",Font.BOLD, 15));
+	panel.add(etiqueta2);
+	
 	
 
 	
@@ -244,15 +256,29 @@ public void ventana(String nick) {
 
 
 
-public void resultados() {
+public void resultados(HashMap<String, Float> mapaDinero,String nick) {
 	resD.add("1-2");
 	resD.add("2-X");
 	resD.add("3-1");
-	for(HashMap<String, String> mapa : mapasD) {
+	for(HashMap<String, Float> mapa : mapasD) {
 		for(String s : mapa.keySet()) {
 			for(int i = 0; i < resD.size(); i++) {
+				if(!s.equals(resD.get(i))){
+					mapaDinero.replace(nick, mapaDinero.get(nick),mapaDinero.get(nick)-mapa.get(s));
+				}
 				if(s.equals(resD.get(i))) {
 					mapaResD.put(s, mapa.get(s));
+					float cuota = 0;
+					if(i == 0) {
+						cuota = 3;
+					}
+					if(i == 1) {
+						cuota = 2.45f;
+					}
+					if(i == 2) {
+						cuota = 1.3f;
+					}
+					mapaDinero.replace(nick, mapaDinero.get(nick),mapaDinero.get(nick)+mapa.get(s)*cuota);
 				}
 			}
 			
@@ -260,6 +286,12 @@ public void resultados() {
 	}
 	System.out.println(mapaResD);
 }
+
+
+
+
+
+
 
 
 
