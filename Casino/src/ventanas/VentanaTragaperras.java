@@ -260,7 +260,7 @@ public class VentanaTragaperras extends JFrame {
 				panel.remove(labelPlatano);
 			} else if(icono1 == "Cereza"){
 				panel.remove(labelCereza);
-			} else if(icono1 == "Comod�n") {
+			} else if(icono1 == "Comodín") {
 				panel.remove(picLabel00);
 			}
 			
@@ -274,7 +274,7 @@ public class VentanaTragaperras extends JFrame {
 				panel.remove(labelPlatano1);
 			} else if(icono2 == "Cereza"){
 				panel.remove(labelCereza1);
-			} else if(icono2 == "Comod�n") {
+			} else if(icono2 == "Comodín") {
 				panel.remove(picLabel05);
 			}
 			
@@ -288,7 +288,7 @@ public class VentanaTragaperras extends JFrame {
 				panel.remove(labelPlatano2);
 			} else if(icono3 == "Cereza"){
 				panel.remove(labelCereza2);
-			} else if(icono3 == "Comod�n") {
+			} else if(icono3 == "Comodín") {
 				panel.remove(picLabel06);
 			}
 			
@@ -305,8 +305,8 @@ public class VentanaTragaperras extends JFrame {
 					while (booleanHilo2 == false) {
 						if (ranura0.getVelocidad() <= 8 && ranura1.getVelocidad() <= 8 && ranura2.getVelocidad() <= 8) {						
 							System.out.println( icono1 + "  " + icono2 + "  " + icono3);
-							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comod�n" || icono1 == icono3 || ((icono2 == "Comod�n" || icono2 == "Bar") && (icono3 == "Comod�n" || icono3 == "Bar"))) {
-								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comod�n"  || (icono3 == "Comod�n" || icono3 == "Bar")) {
+							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
+								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
 									JOptionPane.showMessageDialog(panel, "¡Ganador!");
 									preparaTragaperras();
 									panel.add(picLabel00);
@@ -397,7 +397,7 @@ public class VentanaTragaperras extends JFrame {
 							} else if(icono1 == "Cereza"){
 								panel.add(labelCereza);
 								labelCereza.setBounds(-290, -140, 1000, 1000);
-							} else if(icono1 == "Comod�n") {
+							} else if(icono1 == "Comodín") {
 								panel.add(picLabel00);
 								picLabel00.setBounds(-297, -140, 1000, 1000);
 							}
@@ -422,7 +422,7 @@ public class VentanaTragaperras extends JFrame {
 							} else if(icono2 == "Cereza"){
 								panel.add(labelCereza1);
 								labelCereza1.setBounds(-190, -140, 1000, 1000);
-							} else if(icono2 == "Comod�n") {
+							} else if(icono2 == "Comodín") {
 								panel.add(picLabel05);
 								picLabel05.setBounds(-200, -140, 1000, 1000);
 							}
@@ -448,7 +448,7 @@ public class VentanaTragaperras extends JFrame {
 							} else if(icono3 == "Cereza"){
 								panel.add(labelCereza2);
 								labelCereza2.setBounds(-93, -140, 1000, 1000);
-							} else if(icono3 == "Comod�n") {
+							} else if(icono3 == "Comodín") {
 								panel.add(picLabel06);
 								picLabel06.setBounds(-103, -140, 1000, 1000);
 							}
