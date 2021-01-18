@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.MouseInfo;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
@@ -20,6 +25,8 @@ public class VentanaRuleta extends JFrame{
 	
 	private JFrame ventanaRuleta;
 	private Pelota pelota;
+	
+	BufferedImage imagenPelota;
 	
 	public VentanaRuleta(){
 		
@@ -75,11 +82,20 @@ public class VentanaRuleta extends JFrame{
 		pBotones.add(bRojo);
 		pBotones.add(bNegro);
 		
-		ImageIcon imagenRuleta = new ImageIcon("ruleta.png");
-		JLabel lRuleta = new JLabel(imagenRuleta);
-		lRuleta.setSize(600,600);
-		lRuleta.setLocation(300,200);
-		panel.add(lRuleta);
+		// Añadir imagen de la ruleta al panel principal
+		ImageIcon iRuleta = new ImageIcon("ruleta.png");
+		JLabel lRuleta = new JLabel(iRuleta);
+		lRuleta.setBounds(300, 100, 541, 541);
+		panel.add(lRuleta); 
+		
+		// Imagen de la pelota
+		try {
+			imagenPelota = ImageIO.read(new File("pelota.png"));
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		JLabel picLabel = new JLabel(new ImageIcon(imagenPelota));
+		panel.add(picLabel, BorderLayout.NORTH);
 		
 //		while(true){
 //			try {
