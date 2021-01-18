@@ -38,6 +38,7 @@ public class VentanaTragaperras extends JFrame {
 	private boolean booleanHilo0;
 	private boolean booleanHilo1;
 	private boolean booleanHilo2;
+	private boolean movimiento;
 	private BufferedImage image00;
 	private BufferedImage image01;
 	private BufferedImage image02;
@@ -303,7 +304,7 @@ public class VentanaTragaperras extends JFrame {
 				public void run() {
 					booleanHilo2 = false;
 					while (booleanHilo2 == false) {
-						if (ranura0.getVelocidad() <= 8 && ranura1.getVelocidad() <= 8 && ranura2.getVelocidad() <= 8) {						
+						if (ranura0.getVelocidad() == 0 && ranura1.getVelocidad() == 0 && ranura2.getVelocidad() == 0 && movimiento == true) {						
 							System.out.println( icono1 + "  " + icono2 + "  " + icono3);
 							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
@@ -316,6 +317,7 @@ public class VentanaTragaperras extends JFrame {
 									panel.add(picLabel06);
 									picLabel06.setBounds(-103, -140, 1000, 1000);
 									panel.revalidate();
+									movimiento = false;
 									repaint();
 								} else {
 									JOptionPane.showMessageDialog(panel,"Pruebe suerte otra vez");
@@ -326,6 +328,7 @@ public class VentanaTragaperras extends JFrame {
 									picLabel05.setBounds(-200, -140, 1000, 1000);
 									panel.add(picLabel06);
 									picLabel06.setBounds(-103, -140, 1000, 1000);
+									movimiento = false;
 									panel.revalidate();
 									repaint();
 								}
@@ -338,6 +341,7 @@ public class VentanaTragaperras extends JFrame {
 								picLabel05.setBounds(-200, -140, 1000, 1000);
 								panel.add(picLabel06);
 								picLabel06.setBounds(-103, -140, 1000, 1000);
+								movimiento = false;
 								panel.revalidate();
 								repaint();
 							}
@@ -460,6 +464,8 @@ public class VentanaTragaperras extends JFrame {
 					} catch (InterruptedException e) {
 						System.out.println("Error");;
 					}
+					
+					movimiento = true;
 				}
 				}
 			};
