@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Ruleta {
 	// Elementos estaticos
 	static final int NUM_MAX_CASILLAS = 37; // Casillas totales
-	static final int RADIO_RULETA = 541/2;
+	static final int RADIO_RULETA = 271;
 	static ArrayList<Casilla> casillas;
 	
 	/** Metodo inicializador de ruleta
@@ -15,7 +15,6 @@ public class Ruleta {
 	public static void initRuleta() {
 		Casilla aux = new Casilla();
 		casillas.add( new Casilla( 0, Color.GREEN, new Posicion(0.0f,0.0f) ) ); // Casilla verde
-		
 		// Añadir todas las demas Casillas cada uno con su numero(del 1 al 36) y color
 		for(int i = 1; i < NUM_MAX_CASILLAS; i++) { 
 			casillas.add(aux.addCasillaNegra(i));

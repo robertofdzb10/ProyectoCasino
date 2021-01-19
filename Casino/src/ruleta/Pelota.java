@@ -1,43 +1,46 @@
 package ruleta;
 
-import ventanas.VentanaRuleta; // para utilizar las medidas de la ventana
-
 public class Pelota implements Movible{
-	private int velocidad, aceleracion, velocidadMax;
-	private Posicion posicion;
+	private double x;
+	private double y;
 	
 	/**CONSTRUCTOR PELOTA*/
 	public Pelota() {
-		this.velocidad = 0;
-		this.aceleracion = 3;
-		this.velocidadMax = 80;
+	}
+	public static void main(String[] args) {
+		Pelota p = new Pelota();
+		p.mover();
 	}
 	/**	Metodo para hacer que la pelota se mueva
 	 * alrededor de la ruleta hasta caer en una casilla
 	 */
-	@Override
-	public void mover(Pelota pelota) {
+	public void mover() {
 		Thread hilo = new Thread() {
 			public void run() { 
+				Pelota p = new Pelota();
 				double x,y;
-				double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
-				double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
+				double xOrigen = 841;
+				double yOrigen = 271;
 				double radio = Ruleta.RADIO_RULETA + 60;
 				double anguloCasillas = (2*Math.PI)/Ruleta.NUM_MAX_CASILLAS; 
 				double angulo = 0;
-				double limiteMovimiento = 10000;
+				double limiteMovimiento = 100;
 				// Movimiento circular
 				for(int i = 0; i<limiteMovimiento;i++) {
 					x = Math.cos(angulo)*(radio) + xOrigen;
 					y = Math.sin(angulo)*(radio) + yOrigen;
 					angulo += anguloCasillas;
-					pelota.posicion = new Posicion(x,y);
+					p.setX(x);
+					p.setY(y);
+					System.out.println("x: "+p.getX());
+					System.out.println("y: "+p.getY()+"\n");
 					// Al final del movimiento se va acercando a las casillas
 					if(i >= (limiteMovimiento - 60)) {
-						radio--;
+						if(radio > Ruleta.RADIO_RULETA);
+							radio--;
 					}
 					try {
-						sleep(5);
+						sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -46,49 +49,30 @@ public class Pelota implements Movible{
 		};
 		hilo.start();
 	}
-	/**  @return la velocidad de la pelota
+	
+	/** 
+	 * @return la posicion de la pelota en el eje X
 	 */
-	public int getVelocidad() {
-		return velocidad;
+	public double getX() {
+		return x;
 	}
-	/** Establecer la velocidad a la pelota
-	 * @param velocidad
+	/** Establecer posicion x
+	 * @param x
 	 */
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
+	public void setX(Double x) {
+		this.x = x;
 	}
-	/** @return la aceleracion de la pelota
+	/**
+	 * @return la posicion de la pelota en el eje Y
 	 */
-	public int getAceleracion() {
-		return aceleracion;
+	public double getY() {
+		return y;
 	}
-	/** Establecer aceleracion de la pelota
-	 * @param aceleracion
+	/** Establecer posicion y
+	 * @param y
 	 */
-	public void setAceleracion(int aceleracion) {
-		this.aceleracion = aceleracion;
+	public void setY(Double y) {
+		this.y = y;
 	}
-	/** Devuelve la velocidad maxima de la pelota
-	 * @return la velocidad maxima 
-	 */
-	public int getVelocidadMax() {
-		return velocidadMax;
-	}
-	/** Establecer velocidad maxima de pelota
-	 * @param velocidadMax
-	 */
-	public void setVelocidadMax(int velocidadMax) {
-		this.velocidadMax = velocidadMax;
-	}
-	/** @return la posicion de la pelota
-	 */
-	public Posicion getPosicion() {
-		return posicion;
-	}
-	/** Establecer la posicion de la pelota
-	 * @param posicion
-	 */
-	public void setPosicion(Posicion posicion) {
-		this.posicion = posicion;
-	}
+
 }
