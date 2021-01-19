@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +39,7 @@ public class VentanaRuleta extends JFrame{
 		setTitle("RULETA"); // Titulo de la ventana
 		setLocationRelativeTo(null); // En el centro de la pantalla
 		
-		// PANELES
+		// PANELES - Panel principal y panel de botones
 		JPanel panel = new JPanel();
 		JPanel pBotones = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		getContentPane().add(panel, null);
@@ -52,6 +54,7 @@ public class VentanaRuleta extends JFrame{
 		dinero.setForeground(Color.WHITE);
 		pBotones.add(dinero); 
 		JTextField cDinero = new JTextField(7); // cajetin donde pondrá el dinero disponible
+		cDinero.setText("0,0€");
 		cDinero.setEditable(false);
 		pBotones.add(cDinero);
 		
@@ -60,13 +63,11 @@ public class VentanaRuleta extends JFrame{
 			UIManager.setLookAndFeel(new MetalLookAndFeel());
 		}	
 		catch(Exception e) {}
-		
 		final JButton bCobrar,bRojo,bNegro,bIniciar;
 		bCobrar = new JButton("COBRAR");
 		bRojo = new JButton("ROJO");
 		bNegro = new JButton("NEGRO");
 		bIniciar = new JButton("COMENZAR");
-		
 		bRojo.setSize(130, 30);
 		bRojo.setOpaque(true);
 		bRojo.setBackground(Color.red);
@@ -95,17 +96,31 @@ public class VentanaRuleta extends JFrame{
 			JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		JLabel picLabel = new JLabel(new ImageIcon(imagenPelota));
-		panel.add(picLabel, BorderLayout.NORTH);
+		picLabel.setBounds(300, 100, 100, 100);
+		panel.add(picLabel);
+		panel.repaint();
+		repaint();
 		
-//		while(true){
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			cDinero.setText("(" + MouseInfo.getPointerInfo().getLocation().x + 
-//	                 ", " + 
-//		        		MouseInfo.getPointerInfo().getLocation().y + ")");
-//		}
+		Thread hiloMover = new Thread() {
+			public void run() {
+				picLabel.setLocation((int)pelota.getX(), (int)pelota.getY());
+				try {
+					Thread.sleep(5);
+				}
+				catch(InterruptedException e) {
+					System.out.println("ERROR");
+				}
+			}
+		};hiloMover.start();
+		
+		ActionListener oyenteMover = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pelota.mover();
+			}
+			
+		};
+		bIniciar.addActionListener(oyenteMover);
 	}
 }
