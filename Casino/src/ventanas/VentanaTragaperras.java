@@ -17,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import tragaperras.Ranura;
 
@@ -47,12 +50,19 @@ public class VentanaTragaperras extends JFrame {
 	private BufferedImage image05;
 	private BufferedImage image06;
 	private BufferedImage image07;
+	private int apuesta;
 	private String icono1;
 	private String icono2;
 	private String icono3;
+	private String nick;
+	private HashMap<String, Float> mapaDinero;
 	
-	public VentanaTragaperras() {
-		
+	public VentanaTragaperras(String nick, HashMap<String, Float> mapaDinero) {
+	
+
+	this.nick = nick;
+	this.mapaDinero = mapaDinero;
+
 	ranura0 = new Ranura("ranura0", 18, 2);
 	ranura1 = new Ranura("ranura1", 19, 3);
 	ranura2 = new Ranura("ranura2", 20, 4);
@@ -67,15 +77,37 @@ public class VentanaTragaperras extends JFrame {
 	setTitle("Tragaperras"); //No necesita getContentPane, ya que se hace sobre la ventana
 	
 	
-	//2. Creaci�n de contenedores (paneles) y componenetes
+	//2. Creación de contenedores (paneles) y componenetes
 	
 	JPanel panel = new JPanel( null );//Hemos de crear primero el layout deseado
 	panel.setBackground(Color.WHITE);
-	JPanel botonera = new JPanel();
+	JPanel botonera = new JPanel( new FlowLayout() );
 	botonera.setBackground(Color.LIGHT_GRAY);
 	JButton bStart = new JButton( "Start");
 	JButton bStop = new JButton( "Stop");
-	
+	JButton bSumar = new JButton( "");
+	JButton bRestar = new JButton( "");
+    JLabel saldo = new JLabel();
+    JLabel ultimoPremio = new JLabel();
+    JLabel espacio = new JLabel();
+    JLabel espacio01 = new JLabel();
+    JLabel apuestaLabel = new JLabel();
+    int dinero;
+    float money = mapaDinero.get(nick);
+    dinero = (int) money;
+    saldo.setText( "    Saldo: " + dinero + "€    " );
+    saldo.setBackground(Color.WHITE);
+    saldo.setOpaque(true);
+    ultimoPremio.setText("    Último premio : " + "0 € ");
+    ultimoPremio.setBackground(Color.WHITE);
+    ultimoPremio.setOpaque(true);
+    apuestaLabel.setText( "  " + apuesta + " €  ");
+    apuestaLabel.setBackground(Color.WHITE);
+    apuestaLabel.setOpaque(true);
+    espacio.setText("                          ");
+    espacio01.setText("       ");
+
+    
 	
 	//3.Decoraciones
 	
@@ -148,6 +180,8 @@ public class VentanaTragaperras extends JFrame {
 	JLabel labelCereza1 = new JLabel(new ImageIcon(image07));
 	JLabel labelCereza2 = new JLabel(new ImageIcon(image07));
 	
+
+	
 	
 	//4.Asignacion de componenetes a contenedores
 	
@@ -161,10 +195,23 @@ public class VentanaTragaperras extends JFrame {
 	picLabel06.setBounds(-103, -140, 1000, 1000);
 	getContentPane().add( panel, null);
 	getContentPane().add( botonera, BorderLayout.SOUTH);
+	botonera.add(saldo);
+	botonera.add(ultimoPremio);
+	botonera.add(espacio01);
 	botonera.add(bStart);
 	botonera.add(bStop);
-	bStop.setEnabled(false); //El bot�n de Stop permanece desactivado hasta que se alcanze la Velocidad MAxima de la ranura.
-
+	botonera.add(espacio);
+	ImageIcon iconoSumar = new ImageIcon("src/imagenes/+.jpg");
+	bSumar.setPreferredSize(new Dimension(35,25));
+	bSumar.setIcon(iconoSumar);
+	botonera.add(bSumar);
+	botonera.add(apuestaLabel);
+	ImageIcon iconoRestar = new ImageIcon("src/imagenes/-.jpg");
+	bRestar.setIcon(iconoRestar);
+	bRestar.setPreferredSize(new Dimension(35,25));
+	botonera.add(bRestar);
+	bStop.setEnabled(false); //El botón de Stop permanece desactivado hasta que se alcanze la Velocidad MAxima de la ranura.
+	
 
 
 	
@@ -173,75 +220,83 @@ public class VentanaTragaperras extends JFrame {
 	bStart.addActionListener( new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			icono1 = ranura0.devuelveIconoAleatorio().getNombre();
-			icono2 = ranura1.devuelveIconoAleatorio().getNombre();
-			icono3 = ranura2.devuelveIconoAleatorio().getNombre();
-			
-			//****
-			panel.remove(picLabel00);
-			panel.remove(picLabel05);
-			panel.remove(picLabel06);
-			panel.add(picLabel02);
-			picLabel02.setBounds(-295, -350, 1000, 1000);
-			panel.add(picLabel03);
-			picLabel03.setBounds(-200, -350, 1000, 1000);
-			panel.add(picLabel04);
-			picLabel04.setBounds(-100, -350, 1000, 1000);
-			panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
-			repaint();
-			//****
-			
-			ranura0.Start( ranura0 );
-			ranura0.Start( ranura1 );
-			ranura0.Start( ranura2 );
+			if(apuesta != 0){
+				
+				icono1 = ranura0.devuelveIconoAleatorio().getNombre();
+				icono2 = ranura1.devuelveIconoAleatorio().getNombre();
+				icono3 = ranura2.devuelveIconoAleatorio().getNombre();
 
-			bStart.setEnabled(false);
-			Thread Hilo0 = new Thread() {
-				public void run() {
-					booleanHilo0 = false;
-					while (booleanHilo0 == false) {
-						System.out.println("Ranura0 " + ranura0.getVelocidad());	
-						System.out.println("Ranura1 " +ranura1.getVelocidad());	
-						System.out.println("Ranura2 " +ranura2.getVelocidad());	
-						System.out.println("\n");
-					if (ranura0.getVelocidad() >= ranura0.getVelocidadMax() && ranura1.getVelocidad() >= ranura1.getVelocidadMax() && ranura2.getVelocidad() >= ranura2.getVelocidadMax()) {
-						bStop.setEnabled(true);
-						booleanHilo0 = true;
-					}
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						System.out.println("Error");;
-					}
-				}
-				}
-			};
-			Hilo0.start();
+				
 			
-			Thread HiloMovimiento = new Thread() {
-				public void run() {
-					while (isVisible()) {
-						
-						picLabel02.setLocation(picLabel02.getX() , picLabel02.getY()  + ranura0.getVelocidad());
-						picLabel03.setLocation(picLabel03.getX() , picLabel03.getY()  + ranura1.getVelocidad());
-						picLabel04.setLocation(picLabel04.getX() , picLabel04.getY()  + ranura2.getVelocidad());
-						if (picLabel02.getY() > 100) {
-							picLabel02.setLocation(picLabel02.getX(), -350);
-						} else if(picLabel03.getY() > 100){
-							picLabel03.setLocation(picLabel03.getX(), -350);
-						} else if(picLabel04.getY() > 100) {
-							picLabel04.setLocation(picLabel04.getX(), -350);
+				//****
+				panel.remove(picLabel00);
+				panel.remove(picLabel05);
+				panel.remove(picLabel06);
+				panel.add(picLabel02);
+				picLabel02.setBounds(-295, -350, 1000, 1000);
+				panel.add(picLabel03);
+				picLabel03.setBounds(-200, -350, 1000, 1000);
+				panel.add(picLabel04);
+				picLabel04.setBounds(-100, -350, 1000, 1000);
+				panel.revalidate();//Necesario para validar la accion, de agregar un nuevo elemento a un panel.
+				repaint();
+				//****
+			
+				ranura0.Start( ranura0 );
+				ranura0.Start( ranura1 );
+				ranura0.Start( ranura2 );
+				
+
+				bStart.setEnabled(false);
+				Thread Hilo0 = new Thread() {
+					public void run() {
+						booleanHilo0 = false;
+						while (booleanHilo0 == false) {
+							System.out.println("Ranura0 " + ranura0.getVelocidad());	
+							System.out.println("Ranura1 " +ranura1.getVelocidad());	
+							System.out.println("Ranura2 " +ranura2.getVelocidad());	
+							System.out.println("\n");
+							if (ranura0.getVelocidad() >= ranura0.getVelocidadMax() && ranura1.getVelocidad() >= ranura1.getVelocidadMax() && ranura2.getVelocidad() >= ranura2.getVelocidadMax()) {
+								bStop.setEnabled(true);
+								booleanHilo0 = true;
+							}
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								System.out.println("Error");;
+							}
 						}
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						System.out.println("Error");;
 					}
-				}
-				}
-			};
-			HiloMovimiento.start();
+				};
+				Hilo0.start();
+			
+				Thread HiloMovimiento = new Thread() {
+					public void run() {
+						while (isVisible()) {
+						
+							picLabel02.setLocation(picLabel02.getX() , picLabel02.getY()  + ranura0.getVelocidad());
+							picLabel03.setLocation(picLabel03.getX() , picLabel03.getY()  + ranura1.getVelocidad());
+							picLabel04.setLocation(picLabel04.getX() , picLabel04.getY()  + ranura2.getVelocidad());
+							if (picLabel02.getY() > 100) {
+								picLabel02.setLocation(picLabel02.getX(), -350);
+							} else if(picLabel03.getY() > 100){
+								picLabel03.setLocation(picLabel03.getX(), -350);
+							} else if(picLabel04.getY() > 100) {
+								picLabel04.setLocation(picLabel04.getX(), -350);
+							}
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								System.out.println("Error");;
+							}
+						}
+					}
+				};
+				HiloMovimiento.start();
+			} 
+			else {
+				JOptionPane.showMessageDialog(null, "Por favor introduzca una apuesta mayor a 0€", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	});
 
@@ -249,6 +304,25 @@ public class VentanaTragaperras extends JFrame {
 	
 	bStop.addActionListener( new ActionListener() {
 		
+		public int dineroTragaperras(int apuesta) {
+			if (icono1 =="Comodín" && icono2 =="Comodín" && icono3 =="Comodín") {
+				return apuesta *100;
+			} else if((icono1 =="Comodín"|| icono1 == "Bar") && (icono2 =="Comodín" || icono2 == "Bar") && (icono3 =="Comodín" || icono3 == "Bar")) {
+				return apuesta * 75;
+			} else if (icono1 =="Bar" && icono2 =="Bar" && icono3 =="Bar") {
+				return apuesta * 50;
+			}else if ((icono1 == "Naranja" || icono1 == "Comodín"  || icono1 == "Bar") && (icono2 == "Naranja" || icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Naranja" || icono3 == "Comodín" || icono3 == "Bar")) {
+				return apuesta * 10;
+			} else if ((icono1 == "Pera" || icono1 == "Comodín" || icono1 == "Bar") && (icono2 == "Pera"  || icono2 == "Comodín"|| icono2 == "Bar") && (icono3 == "Pera" || icono3 == "Comodín" || icono3 == "Bar")) {
+				return apuesta * 10;
+			} else if ((icono1 == "Platano" || icono1 == "Comodín" || icono1 == "Bar") && (icono2 == "Platano"  || icono2 == "Comodín"|| icono2 == "Bar") && (icono3 == "Platano" || icono3 == "Comodín" || icono3 == "Bar")) {
+				return apuesta * 10;
+			} else if ((icono1 == "Cereza" || icono1 == "Comodín" || icono1 == "Bar") && (icono2 == "Cereza" || icono2 == "Comodín"|| icono2 == "Bar") && (icono3 == "Cereza" || icono3 == "Comodín" || icono3 == "Bar")) {
+				return apuesta * 10;
+			} else {
+				return 0;
+			}
+		}
 		public void preparaTragaperras() {
 			
 			if (icono1 == "Naranja") {
@@ -308,7 +382,14 @@ public class VentanaTragaperras extends JFrame {
 							System.out.println( icono1 + "  " + icono2 + "  " + icono3);
 							if (icono1 == icono2  || icono1 == "Bar" || icono1 == "Comodín" || icono1 == icono3 || ((icono2 == "Comodín" || icono2 == "Bar") && (icono3 == "Comodín" || icono3 == "Bar"))) {
 								if(icono2 == icono3  || icono2 == "Bar" || icono2 == "Comodín"  || (icono3 == "Comodín" || icono3 == "Bar")) {
-									JOptionPane.showMessageDialog(panel, "¡Ganador!");
+									System.out.println(apuesta);
+									int dineroGanado = dineroTragaperras( apuesta );
+									float valor = mapaDinero.get(nick) + dineroGanado;
+									mapaDinero.replace(nick, valor);
+									int dinero = (int) valor;
+								    saldo.setText( "    Saldo: " + dinero + "€    " );
+								    ultimoPremio.setText("    Último premio : " + dineroGanado + " € ");
+									JOptionPane.showMessageDialog(panel, "¡Ganador! ¡Acaba de ganar " + dineroGanado + "€! ");
 									preparaTragaperras();
 									panel.add(picLabel00);
 									picLabel00.setBounds(-297, -140, 1000, 1000);
@@ -329,7 +410,12 @@ public class VentanaTragaperras extends JFrame {
 									panel.add(picLabel06);
 									picLabel06.setBounds(-103, -140, 1000, 1000);
 									movimiento = false;
+									float valor = mapaDinero.get(nick) - apuesta;
+									mapaDinero.replace(nick, valor);
+									int dinero = (int) valor;
+								    saldo.setText( "    Saldo: " + dinero + "€    " );
 									panel.revalidate();
+									botonera.revalidate();
 									repaint();
 								}
 							}else {
@@ -342,7 +428,12 @@ public class VentanaTragaperras extends JFrame {
 								panel.add(picLabel06);
 								picLabel06.setBounds(-103, -140, 1000, 1000);
 								movimiento = false;
+								float valor = mapaDinero.get(nick) - apuesta;
+								mapaDinero.replace(nick, valor);
+								int dinero = (int) valor;
+							    saldo.setText( "    Saldo: " + dinero + "€    " );
 								panel.revalidate();
+								botonera.revalidate();
 								repaint();
 							}
 							booleanHilo2 = true;
@@ -473,8 +564,40 @@ public class VentanaTragaperras extends JFrame {
 		}
 	
 	});
+	
+	bSumar.addActionListener( new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (apuesta < mapaDinero.get(nick) && ranura0.getVelocidad() == 0 && ranura1.getVelocidad() == 0 && ranura2.getVelocidad() == 0 ) {
+				apuesta = apuesta + 1;
+			}
+			apuestaLabel.setText( "  " + apuesta + " €  ");
+			botonera.revalidate();
+			botonera.repaint();
+			
+		}
+		
+	});
+		
+	
+	bRestar.addActionListener( new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (apuesta != 0 && ranura0.getVelocidad() == 0 && ranura1.getVelocidad() == 0 && ranura2.getVelocidad() == 0 ) {
+				apuesta = apuesta - 1;
+			}
+			apuestaLabel.setText( "  " + apuesta + " €  ");
+			botonera.revalidate();
+			botonera.repaint();
+			
+		}
+		
+	});
 		
 	}
+	
 	
 
 }

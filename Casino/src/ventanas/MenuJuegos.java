@@ -154,7 +154,7 @@ public class MenuJuegos extends JFrame{
 				Thread Hilo = new Thread() {
 					public void run() {
 						
-						VentanaTragaperras v = new VentanaTragaperras();
+						VentanaTragaperras v = new VentanaTragaperras(nick,mapaDinero);
 						v.setVisible(true);
 						
 					}
