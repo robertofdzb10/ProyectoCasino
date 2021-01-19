@@ -32,7 +32,7 @@ public class MenuLogin extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void iniciarSesion(HashMap<String, String> mapa) {
+	public void iniciarSesion(HashMap<String, String> mapa,HashMap<String, Float> mapaDinero) {
 		
 		
 		MenuLogin m2 = new MenuLogin();
@@ -87,7 +87,7 @@ public class MenuLogin extends JFrame{
 							existe = Ficheros(caja.getText(),caja2.getText(),mapa,existe);
 							if(existe == true) {
 								MenuJuegos m = new MenuJuegos();
-								m.juegos(caja.getText());
+								m.juegos(caja.getText(),mapaDinero);
 							}
 							
 							

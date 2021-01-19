@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -27,14 +28,14 @@ public class Carreras extends JFrame implements Apuestas{
 
 	String seleccion = "";
 	int contador = 0;
-	HashMap<String, String> mapaC = new HashMap<String, String>();
-	HashMap<String, String> mapaResC = new HashMap<String, String>();
+	HashMap<String, Float> mapaC = new HashMap<String, Float>();
+	HashMap<String, Float> mapaResC = new HashMap<String, Float>();
 	ArrayList<String> resC = new ArrayList<String>();
-	ArrayList<HashMap<String, String>> mapasC = new ArrayList<HashMap<String, String>>();
+	ArrayList<HashMap<String, Float>> mapasC = new ArrayList<HashMap<String, Float>>();
 	
 
 	
-	public void ventana(String nick) {
+	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 		
 		Carreras c = new Carreras();
 		c.setSize(900, 900);
@@ -77,6 +78,17 @@ public class Carreras extends JFrame implements Apuestas{
 		etiqueta3.setSize(1024, 578);
 		etiqueta3.setLocation(0,230);
 		panel.add(etiqueta3);
+		
+		JTextField caja = new JTextField();
+		caja.setBounds(45, 35, 120, 20);
+		panel.add(caja);
+		
+		JLabel etiqueta2 = new JLabel("CANTIDAD");	
+		etiqueta2.setSize(120, 40);
+		etiqueta2.setLocation(60,5);
+		etiqueta2.setForeground(Color.CYAN);
+		etiqueta2.setFont(new Font("arial",Font.BOLD, 15));
+		panel.add(etiqueta2);
 		
 		
 		final JButton boton1 = new JButton("Caballo1");
@@ -301,7 +313,7 @@ public class Carreras extends JFrame implements Apuestas{
 				public void actionPerformed(ActionEvent e) {
 					Thread Hilo = new Thread() {
 						public void run() {
-							mapaC.put(seleccion,nick);
+							mapaC.put(seleccion,Float.parseFloat(caja.getText()));
 							seleccion = "";
 							contador += 1;
 							if(contador > 2) {
@@ -334,7 +346,7 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							resultados();
+							resultados(mapaDinero,nick);
 							}
 						
 						
@@ -362,15 +374,29 @@ public class Carreras extends JFrame implements Apuestas{
 	
 
 	
-	public void resultados() {
+	public void resultados(HashMap<String, Float> mapaDinero,String nick) {
 		resC.add("1-7");
 		resC.add("2-1");
 		resC.add("3-5");
-		for(HashMap<String, String> mapa : mapasC) {
+		for(HashMap<String, Float> mapa : mapasC) {
 			for(String s : mapa.keySet()) {
 				for(int i = 0; i < resC.size(); i++) {
+					if(!s.equals(resC.get(i))){
+						mapaDinero.replace(nick, mapaDinero.get(nick),mapaDinero.get(nick)-mapa.get(s));
+					}
 					if(s.equals(resC.get(i))) {
 						mapaResC.put(s, mapa.get(s));
+						float cuota = 0;
+						if(i == 0) {
+							cuota = 3f;
+						}
+						if(i == 1) {
+							cuota = 10f;
+						}
+						if(i == 2) {
+							cuota = 2f;
+						}
+						mapaDinero.replace(nick, mapaDinero.get(nick),mapaDinero.get(nick)+mapa.get(s)*cuota);
 					}
 				}
 				
@@ -378,6 +404,9 @@ public class Carreras extends JFrame implements Apuestas{
 		}
 		System.out.println(mapaResC);
 	}
+
+
+
 
 
 }

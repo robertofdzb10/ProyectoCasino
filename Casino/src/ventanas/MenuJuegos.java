@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ public class MenuJuegos extends JFrame{
 	
 	
 	
-	public  void juegos(String nick){
+	public  void juegos(String nick,HashMap<String, Float> mapaDinero){
 	
 	
 	MenuJuegos m2 = new MenuJuegos();
@@ -184,7 +185,7 @@ public class MenuJuegos extends JFrame{
 					public void run() {
 					
 						VentanaApuesta v = new VentanaApuesta();
-						v.ventana(nick);
+						v.ventana(nick,mapaDinero);
 						
 					}
 					
