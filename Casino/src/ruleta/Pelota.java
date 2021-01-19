@@ -1,14 +1,15 @@
 package ruleta;
 
-import ventanas.VentanaRuleta; // para utilizar las medidas de la ventana
-
 public class Pelota implements Movible{
-	private int velocidad, aceleracion, velocidadMax;
 	private double x;
 	private double y;
 	
 	/**CONSTRUCTOR PELOTA*/
 	public Pelota() {
+	}
+	public static void main(String[] args) {
+		Pelota p = new Pelota();
+		p.mover();
 	}
 	/**	Metodo para hacer que la pelota se mueva
 	 * alrededor de la ruleta hasta caer en una casilla
@@ -18,12 +19,12 @@ public class Pelota implements Movible{
 			public void run() { 
 				Pelota p = new Pelota();
 				double x,y;
-				double xOrigen = VentanaRuleta.ANCHO_VENTANA_RULETA/2;
-				double yOrigen = VentanaRuleta.ALTO_VENTANA_RULETA/2;
+				double xOrigen = 841;
+				double yOrigen = 271;
 				double radio = Ruleta.RADIO_RULETA + 60;
 				double anguloCasillas = (2*Math.PI)/Ruleta.NUM_MAX_CASILLAS; 
 				double angulo = 0;
-				double limiteMovimiento = 10000;
+				double limiteMovimiento = 100;
 				// Movimiento circular
 				for(int i = 0; i<limiteMovimiento;i++) {
 					x = Math.cos(angulo)*(radio) + xOrigen;
@@ -31,14 +32,15 @@ public class Pelota implements Movible{
 					angulo += anguloCasillas;
 					p.setX(x);
 					p.setY(y);
-					
+					System.out.println("x: "+p.getX());
+					System.out.println("y: "+p.getY()+"\n");
 					// Al final del movimiento se va acercando a las casillas
 					if(i >= (limiteMovimiento - 60)) {
 						if(radio > Ruleta.RADIO_RULETA);
 							radio--;
 					}
 					try {
-						sleep(1000);
+						sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

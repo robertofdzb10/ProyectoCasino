@@ -96,28 +96,29 @@ public class VentanaRuleta extends JFrame{
 			JOptionPane.showMessageDialog(null, "Error grave contacta con desarrollador", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		JLabel picLabel = new JLabel(new ImageIcon(imagenPelota));
-		picLabel.setBounds(300, 100, 100, 100);
+		picLabel.setBounds(801, 331, 100, 100);
 		panel.add(picLabel);
 		panel.repaint();
 		repaint();
 		
-		Thread hiloMover = new Thread() {
-			public void run() {
-				picLabel.setLocation((int)pelota.getX(), (int)pelota.getY());
-				try {
-					Thread.sleep(5);
-				}
-				catch(InterruptedException e) {
-					System.out.println("ERROR");
-				}
-			}
-		};hiloMover.start();
+		
 		
 		ActionListener oyenteMover = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pelota.mover();
+				Thread hiloMover = new Thread() {
+					public void run() {
+						picLabel.setLocation((int)pelota.getX(), (int)pelota.getY());
+						try {
+							Thread.sleep(5);
+						}
+						catch(InterruptedException e) {
+							System.out.println("ERROR");
+						}
+					}
+				};hiloMover.start();
 			}
 			
 		};
