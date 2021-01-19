@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import BD.BaseDeDatos;
 import ventanas.MenuJuegos;
 
 /**
@@ -223,7 +226,12 @@ public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 				Thread Hilo = new Thread() {
 					public void run() {
 
-						resultados(mapaDinero,nick);
+						try {
+							resultados(mapaDinero,nick);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
 				};
@@ -256,10 +264,11 @@ public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 
 
 
-public void resultados(HashMap<String, Float> mapaDinero,String nick) {
+public void resultados(HashMap<String, Float> mapaDinero,String nick) throws SQLException {
 	resD.add("1-2");
 	resD.add("2-X");
 	resD.add("3-1");
+	grabar();
 	for(HashMap<String, Float> mapa : mapasD) {
 		for(String s : mapa.keySet()) {
 			for(int i = 0; i < resD.size(); i++) {
@@ -285,6 +294,30 @@ public void resultados(HashMap<String, Float> mapaDinero,String nick) {
 		}
 	}
 	System.out.println(mapaResD);
+}
+
+public void grabar() throws SQLException{
+	BaseDeDatos bd = new BaseDeDatos();
+	for(HashMap<String, Float> mapa : mapasD) {
+		for(String s: mapa.keySet()) {
+			
+			
+			PreparedStatement st = bd.establecerConexion().prepareStatement("INSERT INTO " +
+					"APUESTAS( USUARIO, APUESTA ) " +
+
+					"VALUES ( ?,?)" );
+
+					
+			st.setString(1,s);
+			st.setFloat(2, mapa.get(s));
+			int regs = st.executeUpdate();
+			System.out.println("Registros modificados: " + regs);
+		}
+		
+	}
+	
+	bd.cerrarConexion();
+	
 }
 
 

@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -11,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import BD.BaseDeDatos;
 
 /**
  * Menu principal con los juegos a elegir y un boton para acceder al perfil y al historial(solo administradores).
@@ -22,7 +28,7 @@ public class MenuJuegos extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	ArrayList<String> vip = new ArrayList<String>();
 	
 	public  void juegos(String nick,HashMap<String, Float> mapaDinero){
 	
@@ -71,7 +77,12 @@ public class MenuJuegos extends JFrame{
 					public void run() {
 						
 						
-						
+						try {
+							historial(nick);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
 				};
@@ -99,7 +110,12 @@ public class MenuJuegos extends JFrame{
 					public void run() {
 						
 						
-						
+						try {
+							perfil(nick);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
 				};
@@ -203,7 +219,37 @@ public class MenuJuegos extends JFrame{
 	
 	m2.setVisible(true);
 	
-	
 	}
 
+	
+	public void historial(String nick) throws SQLException {
+		boolean ok = false;
+		for(int i = 0;i < vip.size(); i++) {
+			if(nick.equals(vip.get(i))) {
+				ok = true;
+			}
+		}
+		
+		if(ok == true) {
+			BaseDeDatos bd = new BaseDeDatos();
+			Statement st = (Statement) bd.establecerConexion().createStatement();
+			ResultSet rs = ((java.sql.Statement) st).executeQuery("SELECT * FROM APUESTAS");
+			while(rs.next()) {
+			System.out.println("USUARIO: " + rs.getString("APUESTA"));
+			}
+			bd.cerrarConexion();
+		}
+		
+	}
+	
+	public void perfil(String nick) throws SQLException {
+		BaseDeDatos bd = new BaseDeDatos();
+		Statement st = (Statement) bd.establecerConexion().createStatement();
+		ResultSet rs = ((java.sql.Statement) st).executeQuery("SELECT * FROM APUESTAS WHERE USUARIO = '"+nick+"'");
+		while(rs.next()) {
+		System.out.println("USUARIO: " + rs.getString("APUESTA"));
+		}
+		bd.cerrarConexion();
+	}
+	
 }
