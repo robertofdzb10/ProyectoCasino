@@ -18,7 +18,7 @@ import apuestas.Carreras;
 import apuestas.Deportes;
 
 public class VentanaApuesta extends JFrame{
-	boolean creada = true;
+	boolean creado = true;
 	/**
 	 * 
 	 */
@@ -27,9 +27,9 @@ public class VentanaApuesta extends JFrame{
 	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 		
 		AyudaBaseDatos bd = new AyudaBaseDatos();
-		if(creada == false) {
+		if(creado == false) {
 			bd.tablaApuestas();
-			creada = true;
+			creado = true;
 		}
 		VentanaApuesta v = new VentanaApuesta();
 		v.setSize(900, 900);

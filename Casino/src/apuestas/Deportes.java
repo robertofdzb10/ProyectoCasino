@@ -304,11 +304,6 @@ public void resultados(HashMap<String, Float> mapaDinero,String nick) throws SQL
 public void grabar() throws SQLException{
 	
 	BaseDeDatos bd = new BaseDeDatos();
-	if(creada == false) {
-		bd.tablaApuestas();
-		creada == true;
-	}
-	
 	for(HashMap<String, String> mapa : mapasBD) {
 		for(String s: mapa.keySet()) {
 			
