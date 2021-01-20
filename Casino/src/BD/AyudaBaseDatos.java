@@ -1,5 +1,9 @@
 package BD;
 
+/**Clase para crear tablas con inicio y cierrre de la BD incluidos.
+ * @author rober
+ *
+ */
 public class AyudaBaseDatos {
 	
 	private static BaseDeDatos BD = new BaseDeDatos();
