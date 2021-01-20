@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import BD.AyudaBaseDatos;
 import BD.BaseDeDatos;
 import apuestas.Carreras;
 import apuestas.Deportes;
@@ -25,7 +26,7 @@ public class VentanaApuesta extends JFrame{
 
 	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 		
-		//AyudaBaseDatos bd = new AyudaBaseDatos();
+		AyudaBaseDatos bd = new AyudaBaseDatos();
 		if(creada == false) {
 			bd.tablaApuestas();
 			creada = true;
