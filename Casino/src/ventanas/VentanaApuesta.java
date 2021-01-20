@@ -12,17 +12,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import BD.BaseDeDatos;
 import apuestas.Carreras;
 import apuestas.Deportes;
 
 public class VentanaApuesta extends JFrame{
-	
+	boolean creada = true;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
+		
+		AyudaBaseDatos bd = new AyudaBaseDatos();
+		if(creada == false) {
+			bd.tablaApuestas();
+			creada = true;
+		}
 		VentanaApuesta v = new VentanaApuesta();
 		v.setSize(900, 900);
 		JPanel panel = new JPanel();
