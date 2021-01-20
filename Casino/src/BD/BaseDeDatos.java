@@ -32,12 +32,15 @@ public class BaseDeDatos {
 	
 	/**Establece conexión con la base de datos
 	 * En el caso de error a la hora de establecer conexión con la Base de Datos, saca una ventana emergente indicando que ha habido un fallo.
+	 * @return 
 	 */
-	public void establecerConexion() {
+	public Connection establecerConexion() {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:Casino.db");
+			return con;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "No se pudo encotrar la Base de Datos Casino.db", "Error", JOptionPane.ERROR_MESSAGE);
+			return null;
 		}
 	}
 	

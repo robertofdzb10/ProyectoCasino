@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,6 +20,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import BD.BaseDeDatos;
 
 /** 
  * Carreras, un "tipo" de apuesta con posiciones en opcion de apuesta
@@ -346,7 +350,12 @@ public class Carreras extends JFrame implements Apuestas{
 					Thread Hilo = new Thread() {
 						public void run() {
 
-							resultados(mapaDinero,nick);
+							try {
+								resultados(mapaDinero,nick);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							}
 						
 						
@@ -374,10 +383,11 @@ public class Carreras extends JFrame implements Apuestas{
 	
 
 	
-	public void resultados(HashMap<String, Float> mapaDinero,String nick) {
+	public void resultados(HashMap<String, Float> mapaDinero,String nick) throws SQLException {
 		resC.add("1-7");
 		resC.add("2-1");
 		resC.add("3-5");
+		grabar();
 		for(HashMap<String, Float> mapa : mapasC) {
 			for(String s : mapa.keySet()) {
 				for(int i = 0; i < resC.size(); i++) {
@@ -407,6 +417,29 @@ public class Carreras extends JFrame implements Apuestas{
 
 
 
+public void grabar() throws SQLException{
+	BaseDeDatos bd = new BaseDeDatos();
+	for(HashMap<String, Float> mapa : mapasC) {
+		for(String s: mapa.keySet()) {
+			
+			
+			PreparedStatement st = bd.establecerConexion().prepareStatement("INSERT INTO " +
+					"APUESTAS( USUARIO, APUESTA) " +
+
+					"VALUES ( ?,?)" );
+
+					
+			st.setString(1,s);
+			st.setFloat(2, mapa.get(s));
+			int regs = st.executeUpdate();
+			System.out.println("Registros modificados: " + regs);
+		}
+		
+	}
+	
+	bd.cerrarConexion();
+	
+}
 
 
 }
