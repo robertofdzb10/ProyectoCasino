@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class BaseDeDatos {
 	
-	private Connection con; // Conexión con la base de datos
-	
+	private static Connection con; // Conexión con la base de datos
+	private static Statement stat; 
 	
 	/**Construye un objeto para gestionar la base de datos
 	 * En el caso de error a la hora de crear la Base de Datos, saca una ventana emergente indicando que ha habido un fallo.
@@ -41,6 +41,20 @@ public class BaseDeDatos {
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "No se pudo encotrar la Base de Datos Casino.db", "Error", JOptionPane.ERROR_MESSAGE);
 			return null;
+		}
+	}
+	/**Crea una tabla Apuestas con atributos usuario (String) y apuesta (String).
+	 * En el caso de error a la hora de crear la tabla Apuestas, saca una ventana emergente indicando que ha habido un fallo.
+	 */
+	public static void tablaApuestas() {
+		String com; //Inicalizamos el com
+		//Crea tabla 
+		try {
+		com = "CREATE TABLE APUESTAS( USUARIO STRING, APUESTA STRING)";
+		System.out.println( com );
+		stat.executeUpdate( com );
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No se pudo crear la tabla Apuestas", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
