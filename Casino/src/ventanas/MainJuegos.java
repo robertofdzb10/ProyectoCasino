@@ -19,7 +19,7 @@ public class MainJuegos {
 
 	//MenuInicio m = new MenuInicio();
 	//m.setVisible(true);
-//=======
+
 
 //		VentanaTragaperras ventanaTragaperras = new VentanaTragaperras();
 //		ventanaTragaperras.setVisible(true);

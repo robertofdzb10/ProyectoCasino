@@ -141,7 +141,8 @@ public class MenuJuegos extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				Thread Hilo = new Thread() {
 					public void run() {
-						
+						VentanaRuleta ventanaRuleta = new VentanaRuleta();
+						ventanaRuleta.setVisible(true);
 						
 						
 					}
