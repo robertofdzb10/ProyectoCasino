@@ -25,7 +25,7 @@ public class VentanaApuesta extends JFrame{
 
 	public void ventana(String nick,HashMap<String, Float> mapaDinero) {
 		
-		AyudaBaseDatos bd = new AyudaBaseDatos();
+		//AyudaBaseDatos bd = new AyudaBaseDatos();
 		if(creada == false) {
 			bd.tablaApuestas();
 			creada = true;
