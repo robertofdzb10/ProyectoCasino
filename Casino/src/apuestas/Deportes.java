@@ -35,11 +35,14 @@ public class Deportes extends JFrame implements Apuestas{
 	 */
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Float> mapaD = new HashMap<String, Float>();
+	HashMap<String, String> mapaBD = new HashMap<String, String>();
 	HashMap<String, Float> mapaResD = new HashMap<String, Float>();
 	String seleccion = "";
 	int contador = 0;
 	ArrayList<HashMap<String, Float>> mapasD = new ArrayList<HashMap<String, Float>>();
+	ArrayList<HashMap<String, String>> mapasBD = new ArrayList<HashMap<String, String>>();
 	ArrayList<String> resD = new ArrayList<String>();
+	boolean creada = false;
 	
 
 public void ventana(String nick,HashMap<String, Float> mapaDinero) {
@@ -271,6 +274,7 @@ public void resultados(HashMap<String, Float> mapaDinero,String nick) throws SQL
 	grabar();
 	for(HashMap<String, Float> mapa : mapasD) {
 		for(String s : mapa.keySet()) {
+			mapaBD.put(nick, s);
 			for(int i = 0; i < resD.size(); i++) {
 				if(!s.equals(resD.get(i))){
 					mapaDinero.replace(nick, mapaDinero.get(nick),mapaDinero.get(nick)-mapa.get(s));
@@ -293,12 +297,14 @@ public void resultados(HashMap<String, Float> mapaDinero,String nick) throws SQL
 			
 		}
 	}
+	mapasBD.add(mapaBD);
 	System.out.println(mapaResD);
 }
 
 public void grabar() throws SQLException{
+	
 	BaseDeDatos bd = new BaseDeDatos();
-	for(HashMap<String, Float> mapa : mapasD) {
+	for(HashMap<String, String> mapa : mapasBD) {
 		for(String s: mapa.keySet()) {
 			
 			
@@ -309,7 +315,7 @@ public void grabar() throws SQLException{
 
 					
 			st.setString(1,s);
-			st.setFloat(2, mapa.get(s));
+			st.setString(2, mapa.get(s));
 			int regs = st.executeUpdate();
 			System.out.println("Registros modificados: " + regs);
 		}

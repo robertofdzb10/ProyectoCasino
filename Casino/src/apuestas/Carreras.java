@@ -56,7 +56,7 @@ public class Carreras extends JFrame implements Apuestas{
 		
 		String [] nombresColumnas = {"Carrera","Caballo1-cuota","Caballo2-cuota","Caballo3-cuota","Caballo4-cuota","Caballo5-cuota","Caballo6-cuota","Caballo7-cuota"};
 		Object [] [] datosFila = {
-				{"Carrera1","Justify-1.3","Secretariat-2","Frankel-2","Cigar-2","Seabiscuit-3","Citacion-10","Tierry-3"},
+				{"Carrera1","Justify-1.3","Secretariat-2","Frank-2","Cigar-2","Seabiscuit-3","Citacion-10","Tierry-3"},
 				{"Carrera2","ManOfWar-3","Henry-2","Admiral-10","Ruffian-3","Brew-1.3","Spectacular-2","Jones-2"},
 				{"Carrera3","Brave-10","Fire-3","Water-2","Wind-3","Snow-2","Earth-1.3","Hurricane-2"}
 		};
