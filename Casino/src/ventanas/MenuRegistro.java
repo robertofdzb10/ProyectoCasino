@@ -118,14 +118,14 @@ public class MenuRegistro extends JFrame{
 	public static void GuardarNick(String nick,String contraseña, HashMap<String, String> mapa){
 		if (contraseña != null) {
 			mapa.put(nick,contraseña);
-			File fichero = new File("C:\\Users\\Anartz\\git\\ProyectoCasino\\Casino\\mapa.txt");
+			File fichero = new File("mapa.txt");
 			if (fichero.exists()) {
 				fichero.delete();
 			}
 			;
 			for (Entry<String, String> entry : mapa.entrySet()) {
 				try {
-					BufferedWriter bw= new BufferedWriter(new FileWriter("C:\\Users\\Anartz\\git\\ProyectoCasino\\Casino\\mapa.txt",true));
+					BufferedWriter bw= new BufferedWriter(new FileWriter("mapa.txt",true));
 					String key = entry.getKey();
 				    String value = entry.getValue();
 				    bw.write(key);
